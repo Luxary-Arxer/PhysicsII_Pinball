@@ -35,6 +35,7 @@ bool ModuleSceneIntro::Start()
 	rick = App->textures->Load("pinball/rick_head.png");
 	flipper = App->textures->Load("pinball/rick_flipper");
 	bonus_fx = App->audio->LoadFx("pinball/bonus.wav");
+	background = App->textures->Load("pinball/background.png");
 
 	// Create a big red sensor on the bottom of the screen.
 	// This sensor will not make other objects collide with it, but it can tell if it is "colliding" with something else
@@ -56,6 +57,9 @@ bool ModuleSceneIntro::CleanUp()
 
 update_status ModuleSceneIntro::Update()
 {
+
+	App->renderer->Blit(background, 0, 0 , NULL, 1.0f);
+
 	// If user presses SPACE, enable RayCast
 	if(App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
