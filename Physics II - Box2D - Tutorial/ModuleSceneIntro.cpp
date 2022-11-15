@@ -37,7 +37,7 @@ bool ModuleSceneIntro::Start()
 	bonus_fx = App->audio->LoadFx("pinball/bonus.wav");
 	background = App->textures->Load("pinball/background.png");
 
-	hitbox.add(App->physics->CreateChain(0, 0, hitbox2, 166));
+	hitbox.add(App->physics->CreateChain(0, 0, hitbox2, 154));
 	hitboxa.add(App->physics->CreateChain(0, 0, hitbox3, 38));
 	hitboxb.add(App->physics->CreateChain(0, 0, hitbox4, 20));
 	hitboxc.add(App->physics->CreateChain(0, 0, hitbox5, 16));

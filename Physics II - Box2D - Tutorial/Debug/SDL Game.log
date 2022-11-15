@@ -1,9 +1,53 @@
-﻿  ModulePhysics.cpp
-C:\Users\yunqiana\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModulePhysics.cpp(254,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\yunqiana\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModulePhysics.cpp(335,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\yunqiana\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModulePhysics.cpp(336,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\yunqiana\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModulePhysics.cpp(389,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\yunqiana\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModulePhysics.cpp(492,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\yunqiana\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModulePhysics.cpp(493,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\yunqiana\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModulePhysics.cpp(499,27): warning C4244: 'return': conversion from 'float32' to 'int', possible loss of data
+﻿  Application.cpp
+  ModuleSceneIntro.cpp
+C:\Users\yunqiana\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(233,45): warning C4244: 'argument': conversion from 'TYPE' to 'TYPE', possible loss of data
+          with
+          [
+              TYPE=int
+          ]
+          and
+          [
+              TYPE=float
+          ]
+C:\Users\yunqiana\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(233,30): warning C4244: 'argument': conversion from 'TYPE' to 'TYPE', possible loss of data
+          with
+          [
+              TYPE=int
+          ]
+          and
+          [
+              TYPE=float
+          ]
+C:\Users\yunqiana\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(235,18): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\yunqiana\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(238,70): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
+          with
+          [
+              TYPE=float
+          ]
+C:\Users\yunqiana\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(238,47): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
+          with
+          [
+              TYPE=float
+          ]
+C:\Users\yunqiana\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(242,138): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
+          with
+          [
+              TYPE=float
+          ]
+C:\Users\yunqiana\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(242,96): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
+          with
+          [
+              TYPE=float
+          ]
+C:\Users\yunqiana\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(242,57): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
+          with
+          [
+              TYPE=float
+          ]
+C:\Users\yunqiana\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(242,34): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
+          with
+          [
+              TYPE=float
+          ]
+  Generating Code...
   SDL Game.vcxproj -> C:\Users\yunqiana\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\Debug\Box2D - Tutorial.exe
