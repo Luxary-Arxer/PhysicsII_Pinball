@@ -37,6 +37,16 @@ bool ModuleSceneIntro::Start()
 	bonus_fx = App->audio->LoadFx("pinball/bonus.wav");
 	background = App->textures->Load("pinball/background.png");
 
+	hitbox.add(App->physics->CreateChain(0, 0, hitbox2, 166));
+	hitboxa.add(App->physics->CreateChain(0, 0, hitbox3, 38));
+	hitboxb.add(App->physics->CreateChain(0, 0, hitbox4, 20));
+	hitboxc.add(App->physics->CreateChain(0, 0, hitbox5, 16));
+	hitboxd.add(App->physics->CreateChain(0, 0, hitbox6, 70));
+	hitboxe.add(App->physics->CreateChain(0, 0, hitbox7, 8));
+	hitboxf.add(App->physics->CreateChain(0, 0, hitbox8, 8));
+	hitboxg.add(App->physics->CreateChain(0, 0, hitbox9, 32));
+	hitboxh.add(App->physics->CreateChain(0, 0, hitbox10, 36));
+
 	// Create a big red sensor on the bottom of the screen.
 	// This sensor will not make other objects collide with it, but it can tell if it is "colliding" with something else
 	lower_ground_sensor = App->physics->CreateRectangleSensor(SCREEN_WIDTH / 2, SCREEN_HEIGHT, SCREEN_WIDTH, 50);

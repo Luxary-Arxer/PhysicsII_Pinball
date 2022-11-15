@@ -377,7 +377,7 @@ PhysBody* ModulePhysics::CreateChain(int x, int y, int* points, int size)
 {
 	// Create BODY at position x,y
 	b2BodyDef body;
-	body.type = b2_dynamicBody;
+	body.type = b2_staticBody;
 	body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
 
 	// Add BODY to the world
