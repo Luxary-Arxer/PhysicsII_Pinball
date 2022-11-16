@@ -14,6 +14,22 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	circle = box = rick = NULL;
 	ray_on = false;
 	sensed = false;
+
+	// Animations
+
+// Plunger idle animation
+	plungerIdle.PushBack({ 0, 0, 40, 80 });
+	plungerIdle.PushBack({ 44, 0, 40, 80 });
+	plungerIdle.speed = 0.025f;
+
+	// Plunger charging animation
+	plungerCharged.PushBack({ 0, 88, 40, 80 });
+	plungerCharged.PushBack({ 0, 132, 40, 80 });
+	plungerCharged.PushBack({ 0, 176, 40, 80 });
+	plungerCharged.PushBack({ 0, 220, 40, 80 });
+	plungerCharged.PushBack({ 0, 264, 40, 80 });
+	plungerCharged.speed = 0.1f;
+
 }
 
 ModuleSceneIntro::~ModuleSceneIntro()
@@ -36,6 +52,7 @@ bool ModuleSceneIntro::Start()
 	flipper = App->textures->Load("pinball/rick_flipper");
 	bonus_fx = App->audio->LoadFx("pinball/bonus.wav");
 	background = App->textures->Load("pinball/background.png");
+	spoink = App->textures->Load("pinball/spoink.png");
 
 	hitbox.add(App->physics->CreateChain(0, 0, hitbox2, 154));
 	hitboxa.add(App->physics->CreateChain(0, 0, hitbox3, 38));
@@ -69,18 +86,34 @@ bool ModuleSceneIntro::CleanUp()
 
 update_status ModuleSceneIntro::Update()
 {
-
-	App->renderer->Blit(background, 0, 0 , NULL, 1.0f);
+	currentAnimation = &plungerIdle;
 
 	// If user presses SPACE, charges the plunger
 
 	int plungerPosX, plungerPosY;
+	bool plungerUP = true;
 
 	App->physics->plunger->GetPosition(plungerPosX, plungerPosY);
-	App->physics->plunger->body->ApplyForce({ 0, -10 }, { 0,0 }, true);
+	App->physics->plunger->body->ApplyForce({ 0,-10 }, { 0,0 }, true);
+
+	/*
+	// The plunger moves up and down
+
+	if (plungerUP)
+	{
+		App->physics->plunger->body->ApplyForce({ 0, -10 }, { 0,0 }, true);
+		plungerUP = false;
+	}
+	else
+	{
+		App->physics->plunger->body->ApplyForce({ 0, 0 }, { 0,0 }, true);
+		plungerUP = true;
+	}
+	*/
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) 
 	{
+		currentAnimation = &plungerCharged;
 		App->physics->plunger->body->ApplyForce({ 0,8.5 }, { 0,0 }, true);
 	}
 
@@ -90,6 +123,8 @@ update_status ModuleSceneIntro::Update()
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP)
 	{
+		currentAnimation = &plungerIdle;
+
 		if (charge < 1.5f)
 		{
 			App->physics->plunger->body->ApplyForce({ 0, -100 }, { 0, 0 }, true);
@@ -140,6 +175,7 @@ update_status ModuleSceneIntro::Update()
 	{
 		flippers.add(App->physics->CreateRectangle(App->input->GetMouseX(), App->input->GetMouseY(), 328, 90));
 	}
+
 
 	// If user presses 3, create a new RickHead object
 	if(App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
@@ -280,6 +316,10 @@ update_status ModuleSceneIntro::Update()
 			App->renderer->DrawLine(ray.x + destination.x, ray.y + destination.y, ray.x + destination.x + normal.x * 25.0f, ray.y + destination.y + normal.y * 25.0f, 100, 255, 100);
 	}
 
+	currentAnimation->Update();
+
+	App->renderer->Blit(background, 0, 0, NULL, 1.0F);
+
 	// Keep playing
 	return UPDATE_CONTINUE;
 }
@@ -290,4 +330,13 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	App->audio->PlayFx(bonus_fx);
 
 	// Do something else. You can also check which bodies are colliding (sensor? ball? player?)
+}
+
+update_status ModuleSceneIntro::PostUpdate()
+{
+
+	SDL_Rect rect = currentAnimation->GetCurrentFrame();
+	App->renderer->Blit(spoink, 50, 50, NULL, 1.0f);
+
+	return update_status::UPDATE_CONTINUE;
 }

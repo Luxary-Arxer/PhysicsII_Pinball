@@ -3,6 +3,7 @@
 #include "p2List.h"
 #include "p2Point.h"
 #include "Globals.h"
+#include "Animation.h"
 
 class PhysBody;
 
@@ -17,6 +18,7 @@ public:
 	// Main module steps
 	bool Start();
 	update_status Update();
+	update_status PostUpdate();
 	bool CleanUp();
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
@@ -51,6 +53,7 @@ public:
 	SDL_Texture* flipper;
 	SDL_Texture* background;
 	SDL_Texture* plunger;
+	SDL_Texture* spoink;
 
 	// FX
 	uint bonus_fx;
@@ -60,6 +63,13 @@ public:
 	bool ray_on;
 
 	float py;
+
+	// Animations
+
+	Animation* currentAnimation = nullptr;
+
+	Animation plungerIdle;
+	Animation plungerCharged;
 
 	int hitbox10[36] = {
 	70, 138,
