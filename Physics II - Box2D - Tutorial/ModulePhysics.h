@@ -57,6 +57,11 @@ public:
 	// b2ContactListener ---
 	void BeginContact(b2Contact* contact);
 
+	void CreatePrismaticJoint(PhysBody* dyn, PhysBody* stat);
+
+	// Prismatic joint
+	PhysBody* limitPlunger, * plunger;
+
 private:
 
 	// Debug mode

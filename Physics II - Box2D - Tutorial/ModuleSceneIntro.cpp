@@ -55,6 +55,8 @@ bool ModuleSceneIntro::Start()
 	// In ModulePhysics::PreUpdate(), we iterate over all sensors and (if colliding) we call the function ModuleSceneIntro::OnCollision()
 	lower_ground_sensor->listener = this;
 
+	py = App->physics->plunger->body->GetPosition().y;
+
 	return ret;
 }
 
@@ -70,8 +72,44 @@ update_status ModuleSceneIntro::Update()
 
 	App->renderer->Blit(background, 0, 0 , NULL, 1.0f);
 
-	// If user presses SPACE, enable RayCast
-	if(App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	// If user presses SPACE, charges the plunger
+
+	int plungerPosX, plungerPosY;
+
+	App->physics->plunger->GetPosition(plungerPosX, plungerPosY);
+	App->physics->plunger->body->ApplyForce({ 0, -10 }, { 0,0 }, true);
+
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) 
+	{
+		App->physics->plunger->body->ApplyForce({ 0,8.5 }, { 0,0 }, true);
+	}
+
+	// If user releases SPACE, the plunger shoots
+
+	float charge = App->physics->plunger->body->GetPosition().y - py;
+
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP)
+	{
+		if (charge < 1.5f)
+		{
+			App->physics->plunger->body->ApplyForce({ 0, -100 }, { 0, 0 }, true);
+		}
+		else if (charge < 1.75f)
+		{
+			App->physics->plunger->body->ApplyForce({ 0, -150 }, { 0, 0 }, true);
+		}
+		else if (charge < 2.0f)
+		{
+			App->physics->plunger->body->ApplyForce({ 0, -200 }, { 0, 0 }, true);
+		}
+		else 
+		{
+			App->physics->plunger->body->ApplyForce({ 0, -300 }, { 0, 0 }, true);
+		}
+	}
+
+	// If user presses S, enable RayCast
+	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
 	{
 		// Enable raycast mode
 		ray_on = !ray_on;
@@ -84,7 +122,7 @@ update_status ModuleSceneIntro::Update()
 	// If user presses 1, create a new circle object
 	if(App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 	{
-		circles.add(App->physics->CreateCircle(App->input->GetMouseX(), App->input->GetMouseY(), 25));
+		circles.add(App->physics->CreateCircle(App->input->GetMouseX(), App->input->GetMouseY(), 10));
 
 		// Add this module (ModuleSceneIntro) as a "listener" interested in collisions with circles.
 		// If Box2D detects a collision with this last generated circle, it will automatically callback the function ModulePhysics::BeginContact()

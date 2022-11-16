@@ -50,8 +50,7 @@ public:
 	SDL_Texture* rick;
 	SDL_Texture* flipper;
 	SDL_Texture* background;
-
-
+	SDL_Texture* plunger;
 
 	// FX
 	uint bonus_fx;
@@ -60,6 +59,7 @@ public:
 	p2Point<int> ray;
 	bool ray_on;
 
+	float py;
 
 	int hitbox10[36] = {
 	70, 138,

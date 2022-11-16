@@ -47,6 +47,20 @@ bool ModulePhysics::Start()
 	b2BodyDef bd;
 	ground = world->CreateBody(&bd); // Add the static ground body to the World
 
+	// Plunger
+
+	b2Filter b;
+	b.categoryBits = 1;
+	b.maskBits = 1 | 0;
+
+	plunger = CreateRectangle(486, 750, 24, 24);
+	plunger->body->SetType(b2_dynamicBody);
+
+	limitPlunger = CreateRectangle(486, 816, 24, 24);
+	limitPlunger->body->SetType(b2_staticBody);
+
+	App->physics->CreatePrismaticJoint(plunger, limitPlunger);
+
 	return true;
 }
 
@@ -411,6 +425,25 @@ PhysBody* ModulePhysics::CreateChain(int x, int y, int* points, int size)
 
 	// Return our PhysBody class
 	return pbody;
+}
+
+
+void ModulePhysics::CreatePrismaticJoint(PhysBody* dynami, PhysBody* stati)
+{
+
+	b2PrismaticJointDef prismaticJoint;
+	prismaticJoint.collideConnected = true;
+	prismaticJoint.bodyA = plunger->body;
+	prismaticJoint.bodyB = limitPlunger->body;
+
+	prismaticJoint.localAnchorA.Set(0, 0);
+	prismaticJoint.localAnchorB.Set(0, -1.5f);
+	prismaticJoint.localAxisA.Set(0, -1);
+	prismaticJoint.enableLimit = true;
+	prismaticJoint.lowerTranslation = -0.02;
+	prismaticJoint.upperTranslation = 1.0f;
+	(b2PrismaticJoint*)world->CreateJoint(&prismaticJoint);
+
 }
 
 // Callback function to collisions with Box2D
