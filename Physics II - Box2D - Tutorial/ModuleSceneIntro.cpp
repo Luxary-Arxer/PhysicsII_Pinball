@@ -361,7 +361,6 @@ update_status ModuleSceneIntro::Update()
 		}
 		else if (numballs == 1) {
 			numballs--;
-			ball = App->physics->CreateCircle(484, 720, 13);
 		}
 	}
 
@@ -370,19 +369,22 @@ update_status ModuleSceneIntro::Update()
 	{
 		App->renderer->Blit(ultraball,
 			METERS_TO_PIXELS(App->scene_intro->ball->body->GetPosition().x - 12),
-			METERS_TO_PIXELS(App->scene_intro->ball->body->GetPosition().y - 12));
+			METERS_TO_PIXELS(App->scene_intro->ball->body->GetPosition().y - 12),
+			NULL, 1.0F, (App->scene_intro->ball->GetRotation()));
 	}
 	else if (numballs == 2)
 	{
 		App->renderer->Blit(superball,
 			METERS_TO_PIXELS(App->scene_intro->ball->body->GetPosition().x - 12),
-			METERS_TO_PIXELS(App->scene_intro->ball->body->GetPosition().y - 12));
+			METERS_TO_PIXELS(App->scene_intro->ball->body->GetPosition().y - 12),
+			NULL, 1.0F, (App->scene_intro->ball->GetRotation()));
 	}
 	else if (numballs == 1)
 	{
 		App->renderer->Blit(pokeball,
 			METERS_TO_PIXELS(App->scene_intro->ball->body->GetPosition().x - 12),
-			METERS_TO_PIXELS(App->scene_intro->ball->body->GetPosition().y - 12));
+			METERS_TO_PIXELS(App->scene_intro->ball->body->GetPosition().y - 12),
+			NULL, 1.0F, (App->scene_intro->ball->GetRotation()));
 	}
 
 	// Keep playing
