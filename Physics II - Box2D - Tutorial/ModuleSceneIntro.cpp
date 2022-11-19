@@ -17,7 +17,7 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 
 	// Animations
 
-// Plunger idle animation
+	// Plunger idle animation
 	plungerIdle.PushBack({ 44, 0, 40, 80 });
 	plungerIdle.PushBack({ 0, 0, 40, 80 });
 	plungerIdle.speed = 0.025f;
@@ -81,7 +81,13 @@ bool ModuleSceneIntro::Start()
 
 	py = App->physics->plunger->body->GetPosition().y;
 
+	// First ball creation
 	ball = App->physics->CreateCircle(484, 720, 13);
+
+	// Flippers creation
+	App->physics->flippers[0] = App->physics->CreateFlipper(200, 500, 50, 10, true);
+	App->physics->flippers[1] = App->physics->CreateFlipper(260, 500, 50, 10, false);
+
 
 	return ret;
 }

@@ -12,6 +12,18 @@
 #define METERS_TO_PIXELS(m) ((int) floor(PIXELS_PER_METER * m))
 #define PIXEL_TO_METERS(p)  ((float) METER_PER_PIXEL * p)
 
+// Flippers
+struct Flipper
+{
+	b2Body* body;
+	b2Body* rotor;
+
+	bool isActive = false;
+	int cd = 10;
+	int speed = 15;
+	bool left;
+};
+
 // Small class to return to other modules to track position and rotation of physics bodies
 class PhysBody
 {
@@ -48,6 +60,9 @@ public:
 	// Create main ground
 	void CreateScenarioGround();
 
+	// Void function to Update the flippers
+	void PhysicsUpdate();
+
 	// Create basic physics objects
 	PhysBody* CreateCircle(int x, int y, int radius);
 	PhysBody* CreateRectangle(int x, int y, int width, int height);
@@ -57,10 +72,15 @@ public:
 	// b2ContactListener ---
 	void BeginContact(b2Contact* contact);
 
+	// Plunger joint creation function
 	void CreatePrismaticJoint(PhysBody* dyn, PhysBody* stat);
-
-	// Prismatic joint
+	
 	PhysBody* limitPlunger, * plunger;
+
+	// Flipper creation function
+	Flipper* CreateFlipper(int x, int y, int w, int h, bool left);
+
+	Flipper* flippers[2];
 
 private:
 

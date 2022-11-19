@@ -45,6 +45,10 @@ public:
 	PhysBody* ball;
 	int numballs = 3;
 
+	// Flippers
+	PhysBody* flipperLeft;
+	PhysBody* flipperRight;
+
 	// Lower ground sensor (will kill all objects passig through it)
 	PhysBody* lower_ground_sensor;
 	bool sensed;
@@ -55,7 +59,7 @@ public:
 	SDL_Texture* rick;
 	SDL_Texture* flipper;
 	SDL_Texture* background;
-	SDL_Texture* plunger;
+	//SDL_Texture* plunger;
 	SDL_Texture* spoink;
 	SDL_Texture* pokeball;
 	SDL_Texture* superball;

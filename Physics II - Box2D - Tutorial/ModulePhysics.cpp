@@ -446,7 +446,117 @@ void ModulePhysics::CreatePrismaticJoint(PhysBody* dynami, PhysBody* stati)
 
 }
 
-// Callback function to collisions with Box2D
+void ModulePhysics::PhysicsUpdate() {
+
+	for (size_t i = 0; i < 4; i++)
+	{
+		if (i % 2 == 0)
+		{
+			if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN)
+			{
+				flippers[i]->body->SetAngularVelocity(-15);
+				flippers[i]->isActive = true;
+			}
+			if (flippers[i]->isActive == true)
+			{
+				if (flippers[i]->cd <= 5)
+				{
+					flippers[i]->body->SetAngularVelocity(15);
+				}
+				if (flippers[i]->cd <= 0)
+				{
+					flippers[i]->body->SetAngularVelocity(0);
+					flippers[i]->cd = 10;
+					flippers[i]->isActive = false;
+				}
+				else
+				{
+					flippers[i]->cd -= DEGTORAD;
+				}
+			}
+		}
+		else
+		{
+			if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN)
+			{
+				flippers[i]->body->SetAngularVelocity(15);
+				flippers[i]->isActive = true;
+			}
+			if (flippers[i]->isActive == true)
+			{
+				if (flippers[i]->cd <= 5)
+				{
+					flippers[i]->body->SetAngularVelocity(-15);
+				}
+				if (flippers[i]->cd <= 0)
+				{
+					flippers[i]->body->SetAngularVelocity(0);
+					flippers[i]->cd = 10;
+					flippers[i]->isActive = false;
+				}
+				else
+				{
+					flippers[i]->cd -= DEGTORAD;
+				}
+			}
+		}
+	}
+}
+
+// Flipper function definition
+Flipper* ModulePhysics::CreateFlipper(int x, int y, int w, int h, bool left)
+{
+	Flipper* f = new Flipper();
+	b2BodyDef flipper;
+
+	flipper.type = b2_dynamicBody;
+	flipper.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
+
+	f->body = world->CreateBody(&flipper);
+	b2PolygonShape flipper_shape;
+	flipper_shape.SetAsBox(PIXEL_TO_METERS(w) * 0.5f, PIXEL_TO_METERS(h) * 0.5f);
+	
+	b2FixtureDef flipper_fixture;
+	flipper_fixture.shape = &flipper_shape;
+	f->body->CreateFixture(&flipper_fixture);
+
+	b2BodyDef rotor;
+	rotor.type = b2_staticBody;
+
+	if (left)
+	{
+		rotor.position.Set(f->body->GetPosition().x - PIXEL_TO_METERS(w / 2), f->body->GetPosition().y);
+	}
+	else
+	{
+		rotor.position.Set(f->body->GetPosition().x + PIXEL_TO_METERS(w / 2), f->body->GetPosition().y);
+	}
+
+	f->rotor = world->CreateBody(&rotor);
+
+	b2PolygonShape rotor_box;
+	rotor_box.SetAsBox(PIXEL_TO_METERS(1) * 0.5f, PIXEL_TO_METERS(1) * 0.5f);
+
+	b2FixtureDef rotor_fixture;
+	rotor_fixture.shape = &rotor_box;
+	f->rotor->CreateFixture(&rotor_fixture);
+
+	b2RevoluteJointDef jointDef;
+	jointDef.Initialize(f->rotor, f->body, f->rotor->GetWorldCenter());
+	jointDef.lowerAngle = -0.5f * b2_pi; // -90 degrees
+	jointDef.upperAngle = 0.25f * b2_pi; // 45 degrees
+	jointDef.enableLimit = true;
+	jointDef.maxMotorTorque = 10.0f;
+	jointDef.motorSpeed = 0.0f;
+	jointDef.enableMotor = true;
+
+	b2RevoluteJoint* joint;
+	joint = (b2RevoluteJoint*)world->CreateJoint(&jointDef);
+
+	return f;
+}
+
+
 void ModulePhysics::BeginContact(b2Contact* contact)
 {
 	// Call the OnCollision listener function to bodies A and B, passing as inputs our custom PhysBody classes
