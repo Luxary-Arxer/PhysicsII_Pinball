@@ -41,6 +41,9 @@ public:
 	p2List<PhysBody*> hitboxg;
 	p2List<PhysBody*> hitboxh;
 
+	// Ball
+	PhysBody* ball;
+	int numballs = 3;
 
 	// Lower ground sensor (will kill all objects passig through it)
 	PhysBody* lower_ground_sensor;
@@ -54,6 +57,9 @@ public:
 	SDL_Texture* background;
 	SDL_Texture* plunger;
 	SDL_Texture* spoink;
+	SDL_Texture* pokeball;
+	SDL_Texture* superball;
+	SDL_Texture* ultraball;
 
 	// FX
 	uint bonus_fx;
@@ -65,7 +71,6 @@ public:
 	float py;
 
 	// Animations
-
 	Animation* currentAnimation = nullptr;
 
 	Animation plungerIdle;

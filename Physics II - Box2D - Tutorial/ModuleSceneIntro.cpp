@@ -57,6 +57,9 @@ bool ModuleSceneIntro::Start()
 	bonus_fx = App->audio->LoadFx("pinball/bonus.wav");
 	background = App->textures->Load("pinball/background.png");
 	spoink = App->textures->Load("pinball/spoink.png");
+	pokeball = App->textures->Load("pinball/pokeball.png");
+	superball = App->textures->Load("pinball/superball.png");
+	ultraball = App->textures->Load("pinball/ultraball.png");
 
 	hitbox.add(App->physics->CreateChain(0, 0, hitbox2, 154));//
 	hitboxa.add(App->physics->CreateChain(0, 0, background4, 24));//
@@ -77,6 +80,8 @@ bool ModuleSceneIntro::Start()
 	lower_ground_sensor->listener = this;
 
 	py = App->physics->plunger->body->GetPosition().y;
+
+	ball = App->physics->CreateCircle(484, 720, 13);
 
 	return ret;
 }
@@ -152,15 +157,15 @@ update_status ModuleSceneIntro::Update()
 
 		if (charge < 0.2f)
 		{
-			App->physics->plunger->body->ApplyForce({ 0, -200 }, { 0, 0 }, true);
+			App->physics->plunger->body->ApplyForce({ 0, -300 }, { 0, 0 }, true);
 		}
 		else if (charge < 0.5f)
 		{
-			App->physics->plunger->body->ApplyForce({ 0, -300 }, { 0, 0 }, true);
+			App->physics->plunger->body->ApplyForce({ 0, -450 }, { 0, 0 }, true);
 		}
 		else 
 		{
-			App->physics->plunger->body->ApplyForce({ 0, -500 }, { 0, 0 }, true);
+			App->physics->plunger->body->ApplyForce({ 0, -700 }, { 0, 0 }, true);
 		}
 	}
 
@@ -339,11 +344,46 @@ update_status ModuleSceneIntro::Update()
 
 	currentAnimation->Update();
 
+	// Background texture
 	App->renderer->Blit(background, 0, 0, NULL, 1.0F);
 
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
 
+	// Plunger texture
 	App->renderer->Blit(spoink, 466, 750, &rect);
+
+	// Ball lives
+	if (ball->body->GetPosition().y >= PIXEL_TO_METERS(1000))
+	{
+		if (numballs >= 2) {
+			numballs--;
+			ball = App->physics->CreateCircle(484, 720, 13);
+		}
+		else if (numballs == 1) {
+			numballs--;
+			ball = App->physics->CreateCircle(484, 720, 13);
+		}
+	}
+
+	// Ball textures
+	if (numballs == 3)
+	{
+		App->renderer->Blit(ultraball,
+			METERS_TO_PIXELS(App->scene_intro->ball->body->GetPosition().x - 12),
+			METERS_TO_PIXELS(App->scene_intro->ball->body->GetPosition().y - 12));
+	}
+	else if (numballs == 2)
+	{
+		App->renderer->Blit(superball,
+			METERS_TO_PIXELS(App->scene_intro->ball->body->GetPosition().x - 12),
+			METERS_TO_PIXELS(App->scene_intro->ball->body->GetPosition().y - 12));
+	}
+	else if (numballs == 1)
+	{
+		App->renderer->Blit(pokeball,
+			METERS_TO_PIXELS(App->scene_intro->ball->body->GetPosition().x - 12),
+			METERS_TO_PIXELS(App->scene_intro->ball->body->GetPosition().y - 12));
+	}
 
 	// Keep playing
 	return UPDATE_CONTINUE;
