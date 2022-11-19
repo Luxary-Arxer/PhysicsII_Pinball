@@ -437,11 +437,11 @@ void ModulePhysics::CreatePrismaticJoint(PhysBody* dynami, PhysBody* stati)
 	prismaticJoint.bodyB = limitPlunger->body;
 
 	prismaticJoint.localAnchorA.Set(0, 0);
-	prismaticJoint.localAnchorB.Set(0, -1.5f);
+	prismaticJoint.localAnchorB.Set(0, -1.0f);
 	prismaticJoint.localAxisA.Set(0, -1);
 	prismaticJoint.enableLimit = true;
 	prismaticJoint.lowerTranslation = -0.02;
-	prismaticJoint.upperTranslation = 1.0f;
+	prismaticJoint.upperTranslation = 0.1f;
 	(b2PrismaticJoint*)world->CreateJoint(&prismaticJoint);
 
 }

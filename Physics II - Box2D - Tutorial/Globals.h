@@ -29,4 +29,4 @@ enum update_status
 #define WIN_BORDERLESS false
 #define WIN_FULLSCREEN_DESKTOP false
 #define VSYNC true
-#define TITLE "Pokémon Zaphire Pinball"
+#define TITLE "Pokemon Zaphire Pinball"

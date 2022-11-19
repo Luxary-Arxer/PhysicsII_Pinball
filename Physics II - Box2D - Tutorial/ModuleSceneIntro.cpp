@@ -18,18 +18,22 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	// Animations
 
 // Plunger idle animation
-	plungerIdle.PushBack({ 0, 0, 40, 80 });
 	plungerIdle.PushBack({ 44, 0, 40, 80 });
+	plungerIdle.PushBack({ 0, 0, 40, 80 });
 	plungerIdle.speed = 0.025f;
 
 	// Plunger charging animation
-	plungerCharged.PushBack({ 0, 88, 40, 80 });
-	plungerCharged.PushBack({ 0, 132, 40, 80 });
-	plungerCharged.PushBack({ 0, 176, 40, 80 });
-	plungerCharged.PushBack({ 0, 220, 40, 80 });
-	plungerCharged.PushBack({ 0, 264, 40, 80 });
-	plungerCharged.speed = 0.1f;
+	plungerCharging.PushBack({ 88, 0, 40, 80 });
+	plungerCharging.PushBack({ 132, 0, 40, 80 });
+	plungerCharging.PushBack({ 176, 0, 40, 80 });
+	plungerCharging.PushBack({ 220, 0, 40, 80 });
+	plungerCharging.PushBack({ 264, 0, 40, 80 });
+	plungerCharging.speed = 0.1f;
 
+	// Plunger maximum charge animation
+	plungerMaxCharged.PushBack({ 220, 0, 40, 80 });
+	plungerMaxCharged.PushBack({ 264, 0, 40, 80 });
+	plungerMaxCharged.speed = 0.1f;
 }
 
 ModuleSceneIntro::~ModuleSceneIntro()
@@ -91,7 +95,7 @@ update_status ModuleSceneIntro::Update()
 	// If user presses SPACE, charges the plunger
 
 	int plungerPosX, plungerPosY;
-	bool plungerUP = true;
+	//bool plungerUP = true;
 
 	App->physics->plunger->GetPosition(plungerPosX, plungerPosY);
 	App->physics->plunger->body->ApplyForce({ 0,-10 }, { 0,0 }, true);
@@ -111,35 +115,52 @@ update_status ModuleSceneIntro::Update()
 	}
 	*/
 
+	// Camera controller 
+	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+	{
+		App->renderer->camera.y = App->renderer->camera.y + 2;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+	{
+		App->renderer->camera.y = App->renderer->camera.y - 2;
+	}
+
+
+	// Plunger controller
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	{
+		currentAnimation = &plungerCharging;
+	}
+
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) 
 	{
-		currentAnimation = &plungerCharged;
-		App->physics->plunger->body->ApplyForce({ 0,8.5 }, { 0,0 }, true);
+		currentAnimation = &plungerMaxCharged;
+		App->physics->plunger->body->ApplyForce({ 0,10 }, { 0,0 }, true);
 	}
 
 	// If user releases SPACE, the plunger shoots
-
 	float charge = App->physics->plunger->body->GetPosition().y - py;
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP)
 	{
-		currentAnimation = &plungerIdle;
+		if (currentAnimation != &plungerIdle)
+		{
+			plungerIdle.Reset();
+			currentAnimation = &plungerIdle;
+		}
 
-		if (charge < 1.5f)
-		{
-			App->physics->plunger->body->ApplyForce({ 0, -100 }, { 0, 0 }, true);
-		}
-		else if (charge < 1.75f)
-		{
-			App->physics->plunger->body->ApplyForce({ 0, -150 }, { 0, 0 }, true);
-		}
-		else if (charge < 2.0f)
+		if (charge < 0.2f)
 		{
 			App->physics->plunger->body->ApplyForce({ 0, -200 }, { 0, 0 }, true);
 		}
-		else 
+		else if (charge < 0.5f)
 		{
 			App->physics->plunger->body->ApplyForce({ 0, -300 }, { 0, 0 }, true);
+		}
+		else 
+		{
+			App->physics->plunger->body->ApplyForce({ 0, -500 }, { 0, 0 }, true);
 		}
 	}
 
@@ -320,6 +341,10 @@ update_status ModuleSceneIntro::Update()
 
 	App->renderer->Blit(background, 0, 0, NULL, 1.0F);
 
+	SDL_Rect rect = currentAnimation->GetCurrentFrame();
+
+	App->renderer->Blit(spoink, 466, 750, &rect);
+
 	// Keep playing
 	return UPDATE_CONTINUE;
 }
@@ -334,9 +359,6 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 
 update_status ModuleSceneIntro::PostUpdate()
 {
-
-	SDL_Rect rect = currentAnimation->GetCurrentFrame();
-	App->renderer->Blit(spoink, 50, 50, NULL, 1.0f);
 
 	return update_status::UPDATE_CONTINUE;
 }

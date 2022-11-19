@@ -1,6 +1,5 @@
-﻿  Application.cpp
-  ModuleSceneIntro.cpp
-C:\Users\cesar\Desktop\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(307,45): warning C4244: “参数”: 从“TYPE”转换到“TYPE”，可能丢失数据
+﻿  ModuleSceneIntro.cpp
+C:\Users\Usuario\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(328,45): warning C4244: 'argumento': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=int
@@ -9,7 +8,7 @@ C:\Users\cesar\Desktop\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSce
           [
               TYPE=float
           ]
-C:\Users\cesar\Desktop\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(307,30): warning C4244: “参数”: 从“TYPE”转换到“TYPE”，可能丢失数据
+C:\Users\Usuario\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(328,30): warning C4244: 'argumento': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=int
@@ -18,36 +17,35 @@ C:\Users\cesar\Desktop\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSce
           [
               TYPE=float
           ]
-C:\Users\cesar\Desktop\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(309,18): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
-C:\Users\cesar\Desktop\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(312,70): warning C4244: “参数”: 从“TYPE”转换到“int”，可能丢失数据
+C:\Users\Usuario\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(330,18): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Usuario\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(333,70): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-C:\Users\cesar\Desktop\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(312,47): warning C4244: “参数”: 从“TYPE”转换到“int”，可能丢失数据
+C:\Users\Usuario\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(333,47): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-C:\Users\cesar\Desktop\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(316,138): warning C4244: “参数”: 从“TYPE”转换到“int”，可能丢失数据
+C:\Users\Usuario\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(337,138): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-C:\Users\cesar\Desktop\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(316,96): warning C4244: “参数”: 从“TYPE”转换到“int”，可能丢失数据
+C:\Users\Usuario\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(337,96): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-C:\Users\cesar\Desktop\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(316,57): warning C4244: “参数”: 从“TYPE”转换到“int”，可能丢失数据
+C:\Users\Usuario\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(337,57): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-C:\Users\cesar\Desktop\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(316,34): warning C4244: “参数”: 从“TYPE”转换到“int”，可能丢失数据
+C:\Users\Usuario\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(337,34): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-  正在生成代码...
-  SDL Game.vcxproj -> C:\Users\cesar\Desktop\PhysicsII_Pinball\Physics II - Box2D - Tutorial\Debug\Box2D - Tutorial.exe
+  SDL Game.vcxproj -> C:\Users\Usuario\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\Debug\Box2D - Tutorial.exe
