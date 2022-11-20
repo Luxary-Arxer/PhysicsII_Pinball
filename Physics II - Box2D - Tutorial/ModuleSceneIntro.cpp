@@ -60,6 +60,8 @@ bool ModuleSceneIntro::Start()
 	pokeball = App->textures->Load("pinball/pokeball.png");
 	superball = App->textures->Load("pinball/superball.png");
 	ultraball = App->textures->Load("pinball/ultraball.png");
+	flipperLeftTex = App->textures->Load("pinball/flipperLeft.png");
+	flipperRightTex = App->textures->Load("pinball/flipperRight.png");
 
 	hitbox.add(App->physics->CreateChain(0, 0, hitbox2, 154));//
 	hitboxa.add(App->physics->CreateChain(0, 0, background4, 24));//
@@ -85,8 +87,10 @@ bool ModuleSceneIntro::Start()
 	ball = App->physics->CreateCircle(484, 720, 13);
 
 	// Flippers creation
-	App->physics->flippers[0] = App->physics->CreateFlipper(200, 500, 50, 10, true);
-	App->physics->flippers[1] = App->physics->CreateFlipper(260, 500, 50, 10, false);
+	App->physics->flippers[0] = App->physics->CreateFlipper(202, 800, 50, 20, true);
+	App->physics->flippers[0]->body->SetTransform(App->physics->flippers[0]->body->GetPosition(), 0.6);
+	App->physics->flippers[1] = App->physics->CreateFlipper(282, 800, 50, 20, false);
+	App->physics->flippers[1]->body->SetTransform(App->physics->flippers[0]->body->GetPosition(), -0.6);
 
 
 	return ret;
@@ -101,6 +105,8 @@ bool ModuleSceneIntro::CleanUp()
 
 update_status ModuleSceneIntro::Update()
 {
+	App->physics->PhysicsUpdate();
+
 	currentAnimation = &plungerIdle;
 
 	// If user presses SPACE, charges the plunger
@@ -127,12 +133,12 @@ update_status ModuleSceneIntro::Update()
 	*/
 
 	// Camera controller 
-	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
 		App->renderer->camera.y = App->renderer->camera.y + 2;
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
 		App->renderer->camera.y = App->renderer->camera.y - 2;
 	}
@@ -392,6 +398,17 @@ update_status ModuleSceneIntro::Update()
 			METERS_TO_PIXELS(App->scene_intro->ball->body->GetPosition().y - 12),
 			NULL, 1.0F, (App->scene_intro->ball->GetRotation()));
 	}
+
+	// Flippers textures
+	App->renderer->Blit(App->scene_intro->flipperLeftTex,
+		METERS_TO_PIXELS(App->physics->flippers[0]->body->GetPosition().x - 35),
+		METERS_TO_PIXELS(App->physics->flippers[0]->body->GetPosition().y - 10),
+		0, 1.0f, App->physics->flippers[0]->body->GetAngle()* RADTODEG);
+
+	App->renderer->Blit(App->scene_intro->flipperRightTex,
+		METERS_TO_PIXELS(App->physics->flippers[1]->body->GetPosition().x - 25),
+		METERS_TO_PIXELS(App->physics->flippers[1]->body->GetPosition().y - 10),
+		0, 1.0f, App->physics->flippers[1]->body->GetAngle()* RADTODEG);
 
 	// Keep playing
 	return UPDATE_CONTINUE;

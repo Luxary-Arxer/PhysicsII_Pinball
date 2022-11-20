@@ -55,13 +55,14 @@ public:
 	bool Start();
 	update_status PreUpdate();
 	update_status PostUpdate();
+
+	// Void function to Update the flippers
+	void PhysicsUpdate();
+
 	bool CleanUp();
 
 	// Create main ground
 	void CreateScenarioGround();
-
-	// Void function to Update the flippers
-	void PhysicsUpdate();
 
 	// Create basic physics objects
 	PhysBody* CreateCircle(int x, int y, int radius);

@@ -59,11 +59,12 @@ public:
 	SDL_Texture* rick;
 	SDL_Texture* flipper;
 	SDL_Texture* background;
-	//SDL_Texture* plunger;
 	SDL_Texture* spoink;
 	SDL_Texture* pokeball;
 	SDL_Texture* superball;
 	SDL_Texture* ultraball;
+	SDL_Texture* flipperLeftTex;
+	SDL_Texture* flipperRightTex;
 
 	// FX
 	uint bonus_fx;

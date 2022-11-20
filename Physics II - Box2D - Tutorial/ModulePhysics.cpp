@@ -20,7 +20,7 @@ ModulePhysics::ModulePhysics(Application* app, bool start_enabled) : Module(app,
 	ground = NULL;
 	mouse_joint = NULL;
 	mouse_body = NULL;
-	debug = true;
+	debug = false;
 }
 
 // Destructor
@@ -427,7 +427,7 @@ PhysBody* ModulePhysics::CreateChain(int x, int y, int* points, int size)
 	return pbody;
 }
 
-
+// Plunger joint creation function
 void ModulePhysics::CreatePrismaticJoint(PhysBody* dynami, PhysBody* stati)
 {
 
@@ -448,11 +448,11 @@ void ModulePhysics::CreatePrismaticJoint(PhysBody* dynami, PhysBody* stati)
 
 void ModulePhysics::PhysicsUpdate() {
 
-	for (size_t i = 0; i < 4; i++)
+	for (size_t i = 0; i < 2; i++)
 	{
 		if (i % 2 == 0)
 		{
-			if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN)
+			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN)
 			{
 				flippers[i]->body->SetAngularVelocity(-15);
 				flippers[i]->isActive = true;
@@ -477,7 +477,7 @@ void ModulePhysics::PhysicsUpdate() {
 		}
 		else
 		{
-			if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN)
+			if (App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN)
 			{
 				flippers[i]->body->SetAngularVelocity(15);
 				flippers[i]->isActive = true;
@@ -503,7 +503,7 @@ void ModulePhysics::PhysicsUpdate() {
 	}
 }
 
-// Flipper function definition
+// Flipper creation function
 Flipper* ModulePhysics::CreateFlipper(int x, int y, int w, int h, bool left)
 {
 	Flipper* f = new Flipper();
