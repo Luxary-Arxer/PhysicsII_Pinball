@@ -139,7 +139,12 @@ bool ModuleSceneIntro::Start()
 	bumper2->listener = this;
 	bumper3->listener = this;
 
-
+	sensor1 = App->physics->CreateCircleSensor(266, 278, 30);
+	sensor2 = App->physics->CreateCircleSensor(188, 285, 30);
+	sensor3 = App->physics->CreateCircleSensor(235, 336, 30);
+	sensor1->listener = this;
+	sensor2->listener = this;
+	sensor3->listener = this;
 
 	return ret;
 }
@@ -318,7 +323,16 @@ update_status ModuleSceneIntro::Update()
 		ricks.add(App->physics->CreateChain(App->input->GetMouseX(), App->input->GetMouseY(), rick_head, 64));
 	}
 
-
+	if (sensor1->Contains(App->scene_intro->ball->body->GetPosition().x, App->scene_intro->ball->body->GetPosition().y)) {
+		score += 1;
+	}
+	if (sensor2->Contains(App->scene_intro->ball->body->GetPosition().x, App->scene_intro->ball->body->GetPosition().y)) {
+		score += 1;
+	}
+	if (sensor3->Contains(App->scene_intro->ball->body->GetPosition().x, App->scene_intro->ball->body->GetPosition().y)) {
+		score += 1;
+	}
+	OnCollision(ball,bumper1);
 
 	// Prepare for raycast ------------------------------------------------------
 	
@@ -510,11 +524,10 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	if (bodyA == ball && (bodyB == bumper1 || bodyB == bumper2 || bodyB == bumper3)) {
 		score += 10;
 		App->audio->PlayFx(bonus_fx);
-		currentAnimation = &ShroomishHit;
 		if (currentShroomish != &ShroomishHit)
 		{
 			ShroomishHit.Reset();
-			currentAnimation = &ShroomishHit;
+			currentShroomish = &ShroomishHit;
 		}
 		if (currentShroomish != &ShroomishHit) {
 			if (currentShroomish->HasFinished()) {
