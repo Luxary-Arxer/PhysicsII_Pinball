@@ -152,8 +152,6 @@ bool ModuleSceneIntro::CleanUp()
 
 update_status ModuleSceneIntro::Update()
 {
-	App->physics->PhysicsUpdate();
-
 	currentAnimation = &plungerIdle;
 
 	currentpokemoncenter = &centerIdle;
@@ -201,44 +199,48 @@ update_status ModuleSceneIntro::Update()
 		score += 10;
 	}
 
-
-	// Plunger controller
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
+	if (numballs != 0)
 	{
-		currentAnimation = &plungerCharging;
+		App->physics->PhysicsUpdate();
+
+		// Plunger controller
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
+		{
+			currentAnimation = &plungerCharging;
+		}
+
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT || App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+		{
+			currentAnimation = &plungerMaxCharged;
+			App->physics->plunger->body->ApplyForce({ 0,10 }, { 0,0 }, true);
+		}
+
+		// If user releases SPACE, the plunger shoots
+		float charge = App->physics->plunger->body->GetPosition().y - py;
+
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP || App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_UP)
+		{
+			if (currentAnimation != &plungerIdle)
+			{
+				plungerIdle.Reset();
+				currentAnimation = &plungerIdle;
+			}
+
+			if (charge < 0.2f)
+			{
+				App->physics->plunger->body->ApplyForce({ 0, -300 }, { 0, 0 }, true);
+			}
+			else if (charge < 0.5f)
+			{
+				App->physics->plunger->body->ApplyForce({ 0, -450 }, { 0, 0 }, true);
+			}
+			else
+			{
+				App->physics->plunger->body->ApplyForce({ 0, -700 }, { 0, 0 }, true);
+			}
+		}
+
 	}
-
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT || App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-	{
-		currentAnimation = &plungerMaxCharged;
-		App->physics->plunger->body->ApplyForce({ 0,10 }, { 0,0 }, true);
-	}
-
-	// If user releases SPACE, the plunger shoots
-	float charge = App->physics->plunger->body->GetPosition().y - py;
-
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP || App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_UP)
-	{
-		if (currentAnimation != &plungerIdle)
-		{
-			plungerIdle.Reset();
-			currentAnimation = &plungerIdle;
-		}
-
-		if (charge < 0.2f)
-		{
-			App->physics->plunger->body->ApplyForce({ 0, -300 }, { 0, 0 }, true);
-		}
-		else if (charge < 0.5f)
-		{
-			App->physics->plunger->body->ApplyForce({ 0, -450 }, { 0, 0 }, true);
-		}
-		else 
-		{
-			App->physics->plunger->body->ApplyForce({ 0, -700 }, { 0, 0 }, true);
-		}
-	}
-
 	// If user presses S, enable RayCast
 	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
 	{
@@ -494,6 +496,7 @@ update_status ModuleSceneIntro::Update()
 	{
 		App->renderer->Blit(gameOver, 0, 0, NULL, 1.0F);
 	}
+
 	// Keep playing
 	return UPDATE_CONTINUE;
 }
