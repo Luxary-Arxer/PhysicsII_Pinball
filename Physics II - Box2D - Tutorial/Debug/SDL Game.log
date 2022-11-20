@@ -1,5 +1,5 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: El directorio intermedio (Debug\) contiene archivos compartidos de otro proyecto (Box2D - Tutorial.vcxproj). Esto puede dar lugar a un comportamiento incorrecto de limpieza y recompilación.
-  Application.cpp
+﻿  Application.cpp
+  log.cpp
   Main.cpp
   ModuleAudio.cpp
   ModuleInput.cpp
@@ -17,9 +17,9 @@ C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D -
   ModulePlayer.cpp
   ModuleRender.cpp
   ModuleSceneIntro.cpp
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(91,99): warning C4305: 'argumento': truncamiento de 'double' a 'float32'
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(93,100): warning C4305: 'argumento': truncamiento de 'double' a 'float32'
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(345,45): warning C4244: 'argumento': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(92,99): warning C4305: 'argumento': truncamiento de 'double' a 'float32'
+C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(94,100): warning C4305: 'argumento': truncamiento de 'double' a 'float32'
+C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(346,45): warning C4244: 'argumento': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=int
@@ -28,7 +28,7 @@ C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D -
           [
               TYPE=float
           ]
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(345,30): warning C4244: 'argumento': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(346,30): warning C4244: 'argumento': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=int
@@ -37,33 +37,33 @@ C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D -
           [
               TYPE=float
           ]
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(347,18): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(350,70): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
+C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(348,18): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(351,70): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(350,47): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
+C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(351,47): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(354,138): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
+C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(355,138): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(354,96): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
+C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(355,96): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(354,57): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
+C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(355,57): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(354,34): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
+C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(355,34): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
           with
           [
               TYPE=float

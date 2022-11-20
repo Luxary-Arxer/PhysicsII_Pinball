@@ -21,6 +21,7 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
+	void FontDraw(int score, int n, int posX, int posY, int separacio, float scale);
 
 public:
 
@@ -63,6 +64,7 @@ public:
 	SDL_Texture* pokeball;
 	SDL_Texture* superball;
 	SDL_Texture* ultraball;
+	SDL_Texture* font;
 	SDL_Texture* flipperLeftTex;
 	SDL_Texture* flipperRightTex;
 
@@ -74,6 +76,13 @@ public:
 	bool ray_on;
 
 	float py;
+
+	//Score
+	int score = 0;
+	int max_score = 0;
+	int prev_score = 0;
+	int posicioFont = 110;
+	int posicioFontY = 20;
 
 	// Animations
 	Animation* currentAnimation = nullptr;

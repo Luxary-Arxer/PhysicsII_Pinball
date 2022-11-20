@@ -1,8 +1,1 @@
-C:\Users\enricac3\Downloads\Physics II - Box2D - Tutorial\Debug\Box2D - Tutorial.exe
-C:\Users\enricac3\Desktop\PhysicsII_Pinball\Physics II - Box2D - Tutorial\Debug\Box2D - Tutorial.exe
-C:\Users\yunqiana\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\Debug\Box2D - Tutorial.exe
-C:\Users\cesar\Desktop\PhysicsII_Pinball\Physics II - Box2D - Tutorial\Debug\Box2D - Tutorial.exe
-C:\Users\cleve\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\Debug\Pinball.exe
-C:\Users\Usuario\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\Debug\Pinball.exe
-C:\Users\Usuario\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\Debug\Pinball.pdb
 C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\Debug\Pinball.exe
