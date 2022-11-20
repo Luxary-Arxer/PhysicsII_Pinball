@@ -145,12 +145,12 @@ update_status ModuleSceneIntro::Update()
 
 
 	// Plunger controller
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
 	{
 		currentAnimation = &plungerCharging;
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) 
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT || App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
 		currentAnimation = &plungerMaxCharged;
 		App->physics->plunger->body->ApplyForce({ 0,10 }, { 0,0 }, true);
@@ -159,7 +159,7 @@ update_status ModuleSceneIntro::Update()
 	// If user releases SPACE, the plunger shoots
 	float charge = App->physics->plunger->body->GetPosition().y - py;
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP)
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP || App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_UP)
 	{
 		if (currentAnimation != &plungerIdle)
 		{
