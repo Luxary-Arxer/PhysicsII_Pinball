@@ -328,7 +328,6 @@ update_status ModuleSceneIntro::Update()
 
 
 	if (colision == true) {
-		score += 1;
 		colision = false ;
 	}
 	// Prepare for raycast ------------------------------------------------------
