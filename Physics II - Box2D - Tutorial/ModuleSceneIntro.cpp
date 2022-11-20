@@ -34,6 +34,9 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	plungerMaxCharged.PushBack({ 220, 0, 40, 80 });
 	plungerMaxCharged.PushBack({ 264, 0, 40, 80 });
 	plungerMaxCharged.speed = 0.1f;
+
+
+
 }
 
 ModuleSceneIntro::~ModuleSceneIntro()
@@ -360,6 +363,9 @@ update_status ModuleSceneIntro::Update()
 
 	// Background texture
 	App->renderer->Blit(background, 0, 0, NULL, 1.0F);
+
+	App->renderer->Blit(pokemoncenter, 321, 38, NULL, 1.0F);
+
 
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
 

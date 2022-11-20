@@ -83,8 +83,8 @@ public:
 	int score = 0;
 	int max_score = 0;
 	int prev_score = 0;
-	int posicioFont = 100;
-	int posicioFontY = 20;
+	int posicioFont = 90;
+	int posicioFontY = 828;
 
 	// Animations
 	Animation* currentAnimation = nullptr;
