@@ -100,5 +100,8 @@
     <ClCompile Include="ModulePhysics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleFonts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

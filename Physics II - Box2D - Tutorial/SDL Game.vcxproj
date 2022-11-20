@@ -92,6 +92,7 @@
     <ClCompile Include="log.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
+    <ClCompile Include="ModuleFonts.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModulePhysics.cpp" />
     <ClCompile Include="ModulePlayer.cpp" />
