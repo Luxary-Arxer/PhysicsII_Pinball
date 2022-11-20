@@ -21,7 +21,8 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
-	void FontDraw(int score, int n, int posX, int posY, int separacio, float scale);
+	void FontDrawScore(int score, int n, int posX, int posY, int separacio, float scale);
+	void FontDrawLife(int score, int n, int posX, int posY, int separacio, float scale);
 
 public:
 
@@ -68,6 +69,7 @@ public:
 	SDL_Texture* flipperLeftTex;
 	SDL_Texture* flipperRightTex;
 	SDL_Texture* pokemoncenter;
+	SDL_Texture* pokemonentrance;
 
 
 	// FX
@@ -85,6 +87,8 @@ public:
 	int prev_score = 0;
 	int posicioFont = 90;
 	int posicioFontY = 828;
+
+
 
 	// Animations
 	Animation* currentAnimation = nullptr;
