@@ -57,6 +57,7 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 
 	ShroomishHit.PushBack({ 2 * 58, 0, 58, 68 });
 	ShroomishHit.PushBack({ 3 * 58, 0, 58, 68 });
+	ShroomishHit.loop = false;
 	ShroomishHit.speed = 0.02;
 
 	// Pikachu animation
@@ -133,6 +134,13 @@ bool ModuleSceneIntro::Start()
 	bumper1 = App->physics->CreateBumper(266, 278, 12, 1);
 	bumper2 = App->physics->CreateBumper(188, 285, 12, 1);
 	bumper3 = App->physics->CreateBumper(235, 336, 12, 1);
+
+
+	sensor1 = App->physics->CreateCircleSensor(266, 278, 15);
+	sensor2 = App->physics->CreateCircleSensor(188, 285, 15);
+	sensor3 = App->physics->CreateCircleSensor(235, 336, 15);
+
+
 	return ret;
 }
 
@@ -145,6 +153,8 @@ bool ModuleSceneIntro::CleanUp()
 
 update_status ModuleSceneIntro::Update()
 {
+	App->physics->PhysicsUpdate();
+
 	currentAnimation = &plungerIdle;
 
 	currentpokemoncenter = &centerIdle;
@@ -177,20 +187,17 @@ update_status ModuleSceneIntro::Update()
 	*/
 
 	// Camera controller 
-	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 	{
 		App->renderer->camera.y = App->renderer->camera.y + 2;
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_M) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 	{
 		App->renderer->camera.y = App->renderer->camera.y - 2;
 	}
 
-	if (numballs != 0)
-	{
-		App->physics->PhysicsUpdate();
-	
+
 	// Plunger controller
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
 	{
@@ -228,7 +235,6 @@ update_status ModuleSceneIntro::Update()
 		}
 	}
 
-	}
 	// If user presses S, enable RayCast
 	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
 	{
@@ -303,6 +309,52 @@ update_status ModuleSceneIntro::Update()
 		};
 
 		ricks.add(App->physics->CreateChain(App->input->GetMouseX(), App->input->GetMouseY(), rick_head, 64));
+	}
+
+	if (sensor1->Contains(ball->body->GetPosition().x, ball->body->GetPosition().y)) {
+		score += 10;
+		if (currentShroomish != &ShroomishHit)
+		{
+			ShroomishHit.Reset();
+			currentAnimation = &ShroomishHit;
+		}
+		if (currentShroomish != &ShroomishHit) {
+			if (currentShroomish->HasFinished()) {
+				//printf("_Death_");
+				//pbody->body->SetTransform({ PIXEL_TO_METERS(150),PIXEL_TO_METERS(586) }, 0);
+				currentShroomish = &ShroomishIdle;
+			}
+		}
+	}
+	if (sensor2->Contains(ball->body->GetPosition().x, ball->body->GetPosition().y)) {
+		score += 10;
+		if (currentShroomish != &ShroomishHit)
+		{
+			ShroomishHit.Reset();
+			currentAnimation = &ShroomishHit;
+		}
+		if (currentShroomish != &ShroomishHit) {
+			if (currentShroomish->HasFinished()) {
+				//printf("_Death_");
+				//pbody->body->SetTransform({ PIXEL_TO_METERS(150),PIXEL_TO_METERS(586) }, 0);
+				currentShroomish = &ShroomishIdle;
+			}
+		}
+	}
+	if (sensor3->Contains(ball->body->GetPosition().x, ball->body->GetPosition().y)) {
+		score += 10;
+		if (currentShroomish != &ShroomishHit)
+		{
+			ShroomishHit.Reset();
+			currentAnimation = &ShroomishHit;
+		}
+		if (currentShroomish != &ShroomishHit) {
+			if (currentShroomish->HasFinished()) {
+				//printf("_Death_");
+				//pbody->body->SetTransform({ PIXEL_TO_METERS(150),PIXEL_TO_METERS(586) }, 0);
+				currentShroomish = &ShroomishIdle;
+			}
+		}
 	}
 
 	// Prepare for raycast ------------------------------------------------------
@@ -482,7 +534,6 @@ update_status ModuleSceneIntro::Update()
 	{
 		App->renderer->Blit(gameOver, 0, 0, NULL, 1.0F);
 	}
-
 	// Keep playing
 	return UPDATE_CONTINUE;
 }
