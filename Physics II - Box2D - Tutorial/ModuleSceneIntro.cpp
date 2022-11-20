@@ -47,7 +47,7 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	centerIdle.PushBack({ 9 * 192, 0, 192, 192 });
 	centerIdle.PushBack({ 10 * 192, 0, 192, 192 });
 	centerIdle.PushBack({ 11 * 192, 0, 192, 192 });
-	centerIdle.speed = 0.01f;
+	centerIdle.speed = 0.1;
 
 
 }
@@ -383,8 +383,8 @@ update_status ModuleSceneIntro::Update()
 
 	App->renderer->Blit(pokemonentrance, 458, 175, NULL, 1.0F);
 
-	//SDL_Rect rect = currentAnimation->GetCurrentFrame();
-	SDL_Rect rect = currentpokemoncenter->GetCurrentFrame();
+	SDL_Rect rect = currentAnimation->GetCurrentFrame();
+	SDL_Rect rect2 = currentpokemoncenter->GetCurrentFrame();
 
 	// Plunger texture
 	App->renderer->Blit(spoink, 466, 750, &rect);
@@ -427,7 +427,7 @@ update_status ModuleSceneIntro::Update()
 	FontDrawScore(score, 4, posicioFont, posicioFontY, 20, 1);
 	FontDrawLife(numballs, 1, posicioFont+280, posicioFontY, 20, 1);
 
-	App->renderer->Blit(pokemoncenter, 321, 38, NULL, 1.0F);
+	App->renderer->Blit(pokemoncenter, 321, 38, &rect2);
 
 
 	// Flippers textures
@@ -455,6 +455,8 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 
 update_status ModuleSceneIntro::PostUpdate()
 {
+
+
 
 	return update_status::UPDATE_CONTINUE;
 }
