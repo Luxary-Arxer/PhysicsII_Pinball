@@ -122,6 +122,7 @@ bool ModuleSceneIntro::Start()
 
 	// First ball creation
 	ball = App->physics->CreateCircle(484, 720, 13);
+	ball->listener = this;
 
 	// Flippers creation
 	App->physics->flippers[0] = App->physics->CreateFlipper(202, 800, 50, 20, true);
@@ -134,11 +135,11 @@ bool ModuleSceneIntro::Start()
 	bumper1 = App->physics->CreateBumper(266, 278, 12, 1);
 	bumper2 = App->physics->CreateBumper(188, 285, 12, 1);
 	bumper3 = App->physics->CreateBumper(235, 336, 12, 1);
+	bumper1->listener = this;
+	bumper2->listener = this;
+	bumper3->listener = this;
 
 
-	sensor1 = App->physics->CreateCircleSensor(266, 278, 15);
-	sensor2 = App->physics->CreateCircleSensor(188, 285, 15);
-	sensor3 = App->physics->CreateCircleSensor(235, 336, 15);
 
 	return ret;
 }
@@ -509,35 +510,21 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	if (bodyA == ball && (bodyB == bumper1 || bodyB == bumper2 || bodyB == bumper3)) {
 		score += 10;
 		App->audio->PlayFx(bonus_fx);
-		//if (currentShroomish != &ShroomishHit)
-		//{
-		//	ShroomishHit.Reset();
-		//	currentAnimation = &ShroomishHit;
-		//}
-		//if (currentShroomish != &ShroomishHit) {
-		//	if (currentShroomish->HasFinished()) {
-		//		//printf("_Death_");
-		//		//pbody->body->SetTransform({ PIXEL_TO_METERS(150),PIXEL_TO_METERS(586) }, 0);
-		//		currentShroomish = &ShroomishIdle;
-		//	}
-		//}
+		currentAnimation = &ShroomishHit;
+		if (currentShroomish != &ShroomishHit)
+		{
+			ShroomishHit.Reset();
+			currentAnimation = &ShroomishHit;
+		}
+		if (currentShroomish != &ShroomishHit) {
+			if (currentShroomish->HasFinished()) {
+				//printf("_Death_");
+				//pbody->body->SetTransform({ PIXEL_TO_METERS(150),PIXEL_TO_METERS(586) }, 0);
+				currentShroomish = &ShroomishIdle;
+			}
+		}
 	}
-	if (bodyA == ball && (bodyB == sensor1 || bodyB == sensor2 || bodyB == sensor3)) {
-		score += 10;
-		App->audio->PlayFx(bonus_fx);
-		//if (currentShroomish != &ShroomishHit)
-		//{
-		//	ShroomishHit.Reset();
-		//	currentAnimation = &ShroomishHit;
-		//}
-		//if (currentShroomish != &ShroomishHit) {
-		//	if (currentShroomish->HasFinished()) {
-		//		//printf("_Death_");
-		//		//pbody->body->SetTransform({ PIXEL_TO_METERS(150),PIXEL_TO_METERS(586) }, 0);
-		//		currentShroomish = &ShroomishIdle;
-		//	}
-		//}
-	}
+
 
 	// Do something else. You can also check which bodies are colliding (sensor? ball? player?)
 }
