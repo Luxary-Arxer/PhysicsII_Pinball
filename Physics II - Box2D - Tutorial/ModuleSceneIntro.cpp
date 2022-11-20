@@ -49,6 +49,9 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	centerIdle.PushBack({ 11 * 192, 0, 192, 192 });
 	centerIdle.speed = 0.08;
 
+	pikachuAnim.PushBack({ 0, 0, 53, 47 });
+	pikachuAnim.PushBack({ 53, 0, 53, 47 });
+	pikachuAnim.speed = 0.025f;
 
 }
 
@@ -81,6 +84,7 @@ bool ModuleSceneIntro::Start()
 	flipperRightTex = App->textures->Load("pinball/flipperRight.png");
 	pokemoncenter = App->textures->Load("pinball/pokemoncenter.png");
 	pokemonentrance = App->textures->Load("pinball/pokemonentrance.png");
+	pikachu = App->textures->Load("pinball/pikachu.png");
 
 	hitbox.add(App->physics->CreateChain(0, 0, hitbox2, 154));//
 	hitboxa.add(App->physics->CreateChain(0, 0, background4, 24));//
@@ -111,7 +115,6 @@ bool ModuleSceneIntro::Start()
 	App->physics->flippers[1] = App->physics->CreateFlipper(282, 800, 50, 20, false);
 	App->physics->flippers[1]->body->SetTransform(App->physics->flippers[0]->body->GetPosition(), -0.6);
 
-
 	return ret;
 }
 
@@ -129,6 +132,8 @@ update_status ModuleSceneIntro::Update()
 	currentAnimation = &plungerIdle;
 
 	currentpokemoncenter = &centerIdle;
+
+	currentPikachu = &pikachuAnim;
 
 	// If user presses SPACE, charges the plunger
 
@@ -154,15 +159,15 @@ update_status ModuleSceneIntro::Update()
 	*/
 
 	// Camera controller 
-	//if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
-	//{
-	//	App->renderer->camera.y = App->renderer->camera.y + 2;
-	//}
+	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_REPEAT)
+	{
+		App->renderer->camera.y = App->renderer->camera.y + 2;
+	}
 
-	//if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-	//{
-	//	App->renderer->camera.y = App->renderer->camera.y - 2;
-	//}
+	if (App->input->GetKey(SDL_SCANCODE_M) == KEY_REPEAT)
+	{
+		App->renderer->camera.y = App->renderer->camera.y - 2;
+	}
 
 
 	// Plunger controller
@@ -377,17 +382,23 @@ update_status ModuleSceneIntro::Update()
 
 	currentAnimation->Update();
 	currentpokemoncenter->Update();
+	currentPikachu->Update();
 
 	// Background texture
 	App->renderer->Blit(background, 0, 0, NULL, 1.0F);
 
+	// Pokemon center texture
 	App->renderer->Blit(pokemonentrance, 458, 175, NULL, 1.0F);
 
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
 	SDL_Rect rect2 = currentpokemoncenter->GetCurrentFrame();
+	SDL_Rect rect3 = currentPikachu->GetCurrentFrame();
 
 	// Plunger texture
 	App->renderer->Blit(spoink, 466, 750, &rect);
+
+	// Pikachu texture
+	App->renderer->Blit(pikachu, 40, 760, &rect3);
 
 	// Ball lives
 	if (ball->body->GetPosition().y >= PIXEL_TO_METERS(1000))

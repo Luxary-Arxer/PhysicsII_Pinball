@@ -70,6 +70,7 @@ public:
 	SDL_Texture* flipperRightTex;
 	SDL_Texture* pokemoncenter;
 	SDL_Texture* pokemonentrance;
+	SDL_Texture* pikachu;
 
 
 	// FX
@@ -92,14 +93,15 @@ public:
 
 	// Animations
 	Animation* currentAnimation = nullptr;
-
 	Animation plungerIdle;
 	Animation plungerCharging;
 	Animation plungerMaxCharged;
 
 	Animation* currentpokemoncenter = nullptr;
-
 	Animation centerIdle;
+
+	Animation* currentPikachu = nullptr;
+	Animation pikachuAnim;
 
 
 	int triangleLeft[6]{
