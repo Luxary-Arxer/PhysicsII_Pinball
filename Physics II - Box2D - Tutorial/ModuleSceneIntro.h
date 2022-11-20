@@ -32,6 +32,10 @@ public:
 	p2List<PhysBody*> ricks;
 	p2List<PhysBody*> flippers;
 
+	// Elements Hitboxes
+	PhysBody* bumper1;
+	PhysBody* bumper2;
+	PhysBody* bumper3;
 
 	p2List<PhysBody*> hitbox;
 	p2List<PhysBody*> hitboxa;

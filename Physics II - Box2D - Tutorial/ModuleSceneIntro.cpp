@@ -118,7 +118,11 @@ bool ModuleSceneIntro::Start()
 	App->physics->flippers[1] = App->physics->CreateFlipper(282, 800, 50, 20, false);
 	App->physics->flippers[1]->body->SetTransform(App->physics->flippers[0]->body->GetPosition(), -0.6);
 
+	//Bumpers creation
 
+	bumper1 = App->physics->CreateBumper(266, 278, 12, 1);
+	bumper2 = App->physics->CreateBumper(188, 285, 12, 1);
+	bumper3 = App->physics->CreateBumper(235, 336, 12, 1);
 	return ret;
 }
 
