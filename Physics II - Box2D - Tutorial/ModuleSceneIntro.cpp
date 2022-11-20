@@ -132,6 +132,11 @@ bool ModuleSceneIntro::Start()
 
 	//Bumpers creation
 
+<<<<<<< HEAD
+	bumper1 = App->physics->CreateBumper(266, 278, 12, 1.5);
+	bumper2 = App->physics->CreateBumper(188, 285, 12, 1.5);
+	bumper3 = App->physics->CreateBumper(235, 336, 12, 1.5);
+=======
 	bumper1 = App->physics->CreateBumper(266, 278, 12, 1);
 	bumper2 = App->physics->CreateBumper(188, 285, 12, 1);
 	bumper3 = App->physics->CreateBumper(235, 336, 12, 1);
@@ -146,6 +151,7 @@ bool ModuleSceneIntro::Start()
 	sensor2->listener = this;
 	sensor3->listener = this;
 
+>>>>>>> d8788af7482f478abc53b4f465833db2aae568b3
 	return ret;
 }
 
