@@ -400,7 +400,7 @@ update_status ModuleSceneIntro::Update()
 			NULL, 1.0F, (App->scene_intro->ball->GetRotation()));
 	}
 
-	FontDraw(score, 4, posicioFont, posicioFontY, 0, 1);
+	FontDraw(score, 4, posicioFont, posicioFontY, 10, 1);
 
 	// Flippers textures
 	App->renderer->Blit(App->scene_intro->flipperLeftTex,
@@ -420,7 +420,7 @@ update_status ModuleSceneIntro::Update()
 void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
 	// Play Audio FX on every collision, regardless of who is colliding
-	App->audio->PlayFx(bonus_fx);
+	//App->audio->PlayFx(bonus_fx);
 
 	// Do something else. You can also check which bodies are colliding (sensor? ball? player?)
 }

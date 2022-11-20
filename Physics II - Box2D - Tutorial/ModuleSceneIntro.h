@@ -78,10 +78,10 @@ public:
 	float py;
 
 	//Score
-	int score = 1234;
+	int score = 0;
 	int max_score = 0;
 	int prev_score = 0;
-	int posicioFont = 0;
+	int posicioFont = 100;
 	int posicioFontY = 20;
 
 	// Animations
