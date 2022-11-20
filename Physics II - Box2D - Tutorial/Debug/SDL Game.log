@@ -1,2 +1,0 @@
-﻿ModuleSceneIntro.obj : error LNK2019: símbolo externo "public: class PhysBody * __thiscall ModulePhysics::CreateBumper(int,int,int,int)" (?CreateBumper@ModulePhysics@@QAEPAVPhysBody@@HHHH@Z) sin resolver al que se hace referencia en la función "public: virtual bool __thiscall ModuleSceneIntro::Start(void)" (?Start@ModuleSceneIntro@@UAE_NXZ)
-C:\Users\cleve\Documents\GitHub\PhysicsII_Pinball\Physics II - Box2D - Tutorial\Debug\Pinball.exe : fatal error LNK1120: 1 externos sin resolver
