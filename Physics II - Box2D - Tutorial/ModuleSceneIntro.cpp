@@ -47,7 +47,7 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	centerIdle.PushBack({ 9 * 192, 0, 192, 192 });
 	centerIdle.PushBack({ 10 * 192, 0, 192, 192 });
 	centerIdle.PushBack({ 11 * 192, 0, 192, 192 });
-	centerIdle.speed = 0.1;
+	centerIdle.speed = 0.08;
 
 
 }
