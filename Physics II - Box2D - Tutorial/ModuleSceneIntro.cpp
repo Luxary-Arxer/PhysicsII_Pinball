@@ -133,15 +133,15 @@ update_status ModuleSceneIntro::Update()
 	*/
 
 	// Camera controller 
-	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
-	{
-		App->renderer->camera.y = App->renderer->camera.y + 2;
-	}
+	//if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+	//{
+	//	App->renderer->camera.y = App->renderer->camera.y + 2;
+	//}
 
-	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-	{
-		App->renderer->camera.y = App->renderer->camera.y - 2;
-	}
+	//if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+	//{
+	//	App->renderer->camera.y = App->renderer->camera.y - 2;
+	//}
 
 
 	// Plunger controller
