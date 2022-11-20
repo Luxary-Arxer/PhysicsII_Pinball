@@ -35,6 +35,7 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	plungerMaxCharged.PushBack({ 264, 0, 40, 80 });
 	plungerMaxCharged.speed = 0.1f;
 
+	// Pokemon center animation
 	centerIdle.PushBack({ 0*192, 0, 192, 192 });
 	centerIdle.PushBack({ 1 * 192, 0, 192, 192 });
 	centerIdle.PushBack({ 2 * 192, 0, 192, 192 });
@@ -49,6 +50,7 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	centerIdle.PushBack({ 11 * 192, 0, 192, 192 });
 	centerIdle.speed = 0.08;
 
+	// Shroomish animation
 	ShroomishIdle.PushBack({ 0 * 58, 0, 58, 68 });
 	ShroomishIdle.PushBack({ 1 * 58, 0, 58, 68 });
 	ShroomishIdle.speed = 0.02;
@@ -56,6 +58,12 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	ShroomishHit.PushBack({ 2 * 58, 0, 58, 68 });
 	ShroomishHit.PushBack({ 3 * 58, 0, 58, 68 });
 	ShroomishHit.speed = 0.02;
+
+	// Pikachu animation
+	pikachuAnim.PushBack({ 0, 0, 53, 47 });
+	pikachuAnim.PushBack({ 53, 0, 53, 47 });
+	pikachuAnim.speed = 0.025f;
+
 }
 
 ModuleSceneIntro::~ModuleSceneIntro()
@@ -88,6 +96,7 @@ bool ModuleSceneIntro::Start()
 	pokemoncenter = App->textures->Load("pinball/pokemoncenter.png");
 	pokemonentrance = App->textures->Load("pinball/pokemonentrance.png");
 	Shroomish = App->textures->Load("pinball/Pokemon_Shroomish.png");
+	pikachu = App->textures->Load("pinball/pikachu.png");
 
 	hitbox.add(App->physics->CreateChain(0, 0, hitbox2, 154));//
 	hitboxa.add(App->physics->CreateChain(0, 0, background4, 24));//
@@ -143,6 +152,8 @@ update_status ModuleSceneIntro::Update()
 
 	currentShroomish = &ShroomishIdle;
 
+	currentPikachu = &pikachuAnim;
+
 	// If user presses SPACE, charges the plunger
 
 	int plungerPosX, plungerPosY;
@@ -167,15 +178,15 @@ update_status ModuleSceneIntro::Update()
 	*/
 
 	// Camera controller 
-	//if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
-	//{
-	//	App->renderer->camera.y = App->renderer->camera.y + 2;
-	//}
+	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_REPEAT)
+	{
+		App->renderer->camera.y = App->renderer->camera.y + 2;
+	}
 
-	//if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-	//{
-	//	App->renderer->camera.y = App->renderer->camera.y - 2;
-	//}
+	if (App->input->GetKey(SDL_SCANCODE_M) == KEY_REPEAT)
+	{
+		App->renderer->camera.y = App->renderer->camera.y - 2;
+	}
 
 
 	// Plunger controller
@@ -391,6 +402,7 @@ update_status ModuleSceneIntro::Update()
 	currentAnimation->Update();
 	currentpokemoncenter->Update();
 	currentShroomish->Update();
+	currentPikachu->Update();
 
 	// Background texture
 	App->renderer->Blit(background, 0, 0, NULL, 1.0F);
@@ -400,6 +412,7 @@ update_status ModuleSceneIntro::Update()
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
 	SDL_Rect rect2 = currentpokemoncenter->GetCurrentFrame();
 	SDL_Rect rect3 = currentShroomish->GetCurrentFrame();
+	SDL_Rect rect4 = currentPikachu->GetCurrentFrame();
 
 	// Plunger texture
 	App->renderer->Blit(spoink, 466, 750, &rect);
@@ -447,6 +460,8 @@ update_status ModuleSceneIntro::Update()
 	App->renderer->Blit(Shroomish, 160, 242, &rect3);
 	App->renderer->Blit(Shroomish, 238, 235, &rect3);
 	App->renderer->Blit(Shroomish, 205, 293, &rect3);
+
+	App->renderer->Blit(pikachu, 40, 760, &rect4);
 
 	// Flippers textures
 	App->renderer->Blit(App->scene_intro->flipperLeftTex,

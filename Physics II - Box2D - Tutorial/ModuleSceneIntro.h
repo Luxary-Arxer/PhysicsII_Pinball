@@ -75,6 +75,7 @@ public:
 	SDL_Texture* pokemoncenter;
 	SDL_Texture* pokemonentrance;
 	SDL_Texture* Shroomish;
+	SDL_Texture* pikachu;
 
 	// FX
 	uint bonus_fx;
@@ -107,8 +108,8 @@ public:
 	Animation ShroomishIdle;
 	Animation ShroomishHit;
 
-
-
+	Animation* currentPikachu = nullptr;
+	Animation pikachuAnim;
 
 
 	int triangleLeft[6]{
