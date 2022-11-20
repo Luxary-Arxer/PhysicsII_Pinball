@@ -71,6 +71,7 @@ public:
 	PhysBody* CreateCircleSensor(int x, int y, int radius);
 	PhysBody* CreateChain(int x, int y, int* points, int size);
 	PhysBody* CreateBumperCircle(int x, int y, int radius, int restitution);
+	PhysBody* CreateBumperRectangle(int x, int y, int width, int height, int restitution);
 
 
 	// b2ContactListener ---

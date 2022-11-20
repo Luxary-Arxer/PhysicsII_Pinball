@@ -343,7 +343,6 @@ PhysBody* ModulePhysics::CreateBumperCircle(int x, int y, int radius, int restit
 	pbody->width = pbody->height = radius;
 
 	return pbody;
-
 	}
 PhysBody* ModulePhysics::CreateRectangle(int x, int y, int width, int height)
 {
@@ -377,7 +376,39 @@ PhysBody* ModulePhysics::CreateRectangle(int x, int y, int width, int height)
 	// Return our PhysBody class
 	return pbody;
 }
+PhysBody* ModulePhysics::CreateBumperRectangle(int x, int y, int width, int height, int restitution)
+{
+	// Create BODY at position x,y
+	b2BodyDef body;
+	body.type = b2_staticBody;
+	body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
 
+	// Add BODY to the world
+	b2Body* b = world->CreateBody(&body);
+
+	// Create SHAPE
+	b2PolygonShape box;
+	box.SetAsBox(PIXEL_TO_METERS(width) * 0.5f, PIXEL_TO_METERS(height) * 0.5f);
+
+	// Create FIXTURE
+	b2FixtureDef fixture;
+	fixture.shape = &box;
+	fixture.density = 1.0f;
+	fixture.restitution = 5.0f;
+
+	// Add fixture to the BODY
+	b->CreateFixture(&fixture);
+
+	// Create our custom PhysBody class
+	PhysBody* pbody = new PhysBody();
+	pbody->body = b;
+	b->SetUserData(pbody);
+	pbody->width = width * 0.5f;
+	pbody->height = height * 0.5f;
+
+	// Return our PhysBody class
+	return pbody;
+}
 PhysBody* ModulePhysics::CreateRectangleSensor(int x, int y, int width, int height)
 {
 	// Create BODY at position x,y

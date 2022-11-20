@@ -36,6 +36,8 @@ public:
 	PhysBody* bumper1;
 	PhysBody* bumper2;
 	PhysBody* bumper3;
+	PhysBody* bumper4;
+	PhysBody* bumper5;
 
 	PhysBody* sensor1;
 	PhysBody* sensor2;

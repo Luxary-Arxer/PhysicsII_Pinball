@@ -141,6 +141,13 @@ bool ModuleSceneIntro::Start()
 	bumper2->listener = this;
 	bumper3->listener = this;
 
+	bumper4 = App->physics->CreateBumperRectangle(134 + 50/2, 694 + 20/2, 70, 7,1);
+	bumper4->body->SetTransform(App->scene_intro->bumper4->body->GetPosition(), 1);
+
+	//bumper5 = App->physics->CreateBumperRectangle(800, 694 + 20 / 2, 70, 7, 1);
+	//bumper5->body->SetTransform(App->scene_intro->bumper4->body->GetPosition(), -1);
+
+	//bumper5 = App->physics->CreateBumperRectangle(282, 800, 50, 20,1);
 	//sensor1 = App->physics->CreateCircleSensor(266, 278, 30);
 	//sensor2 = App->physics->CreateCircleSensor(188, 285, 30);
 	//sensor3 = App->physics->CreateCircleSensor(235, 336, 30);
