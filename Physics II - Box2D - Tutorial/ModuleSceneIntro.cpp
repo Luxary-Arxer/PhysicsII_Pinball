@@ -441,16 +441,16 @@ void ModuleSceneIntro::FontDraw(int score, int n, int posX, int posY, int separa
 		scoreCopia /= 10;
 	}
 
-	SDL_Rect rect0 = { 259, 65, 33, 40 };
-	SDL_Rect rect1 = { 25, 11, 20, 38 };
-	SDL_Rect rect2 = { 80, 10, 29, 40 };
-	SDL_Rect rect3 = { 141, 10, 30, 40 };
-	SDL_Rect rect4 = { 200, 11, 31, 38 };
-	SDL_Rect rect5 = { 261, 10, 29, 40 };
-	SDL_Rect rect6 = { 19, 65, 32, 40 };
-	SDL_Rect rect7 = { 82, 65, 26, 40 };
-	SDL_Rect rect8 = { 140, 65, 31, 40 };
-	SDL_Rect rect9 = { 199, 65, 32, 40 };
+	SDL_Rect rect0 = { 1 * 10, 0, 10, 17 };
+	SDL_Rect rect1 = { 2 * 10, 0, 10, 17 };
+	SDL_Rect rect2 = { 3 * 10, 0, 10, 17 };
+	SDL_Rect rect3 = { 4 * 10, 0, 10, 17 };
+	SDL_Rect rect4 = { 5 * 10, 0, 10, 17 };
+	SDL_Rect rect5 = { 6 * 10, 0, 10, 17 };
+	SDL_Rect rect6 = { 7 * 10, 0, 10, 17 };
+	SDL_Rect rect7 = { 8 * 10, 0, 10, 17 };
+	SDL_Rect rect8 = { 9 * 10, 0, 10, 17 };
+	SDL_Rect rect9 = { 10 * 10, 0, 10, 17 };
 
 	for (int k = 0; k < n; ++k) {
 

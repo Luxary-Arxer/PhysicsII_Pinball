@@ -1,5 +1,4 @@
-﻿  Application.cpp
-  ModuleSceneIntro.cpp
+﻿  ModuleSceneIntro.cpp
 C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(92,99): warning C4305: 'argumento': truncamiento de 'double' a 'float32'
 C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(94,100): warning C4305: 'argumento': truncamiento de 'double' a 'float32'
 C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(346,45): warning C4244: 'argumento': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
@@ -51,5 +50,4 @@ C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D -
           [
               TYPE=float
           ]
-  Generando código...
   SDL Game.vcxproj -> C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\Debug\Pinball.exe
