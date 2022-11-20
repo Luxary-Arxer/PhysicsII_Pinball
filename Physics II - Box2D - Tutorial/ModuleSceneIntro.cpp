@@ -506,6 +506,22 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	// Play Audio FX on every collision, regardless of who is colliding
 
 
+	if (bodyA == ball && (bodyB == bumper1 || bodyB == bumper2 || bodyB == bumper3)) {
+		score += 10;
+		App->audio->PlayFx(bonus_fx);
+		//if (currentShroomish != &ShroomishHit)
+		//{
+		//	ShroomishHit.Reset();
+		//	currentAnimation = &ShroomishHit;
+		//}
+		//if (currentShroomish != &ShroomishHit) {
+		//	if (currentShroomish->HasFinished()) {
+		//		//printf("_Death_");
+		//		//pbody->body->SetTransform({ PIXEL_TO_METERS(150),PIXEL_TO_METERS(586) }, 0);
+		//		currentShroomish = &ShroomishIdle;
+		//	}
+		//}
+	}
 	if (bodyA == ball && (bodyB == sensor1 || bodyB == sensor2 || bodyB == sensor3)) {
 		score += 10;
 		App->audio->PlayFx(bonus_fx);
@@ -522,7 +538,6 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 		//	}
 		//}
 	}
-
 
 	// Do something else. You can also check which bodies are colliding (sensor? ball? player?)
 }
