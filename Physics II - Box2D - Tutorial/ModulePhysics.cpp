@@ -320,7 +320,7 @@ PhysBody* ModulePhysics::CreateCircle(int x, int y, int radius)
 	return pbody;
 }
 
-PhysBody* ModulePhysics::CreateBumper(int x, int y, int radius, int restitution)
+PhysBody* ModulePhysics::CreateBumperCircle(int x, int y, int radius, int restitution)
 	{
 	b2BodyDef body;
 	body.type = b2_staticBody;
