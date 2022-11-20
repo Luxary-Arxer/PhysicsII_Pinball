@@ -364,7 +364,7 @@ update_status ModuleSceneIntro::Update()
 	// Background texture
 	App->renderer->Blit(background, 0, 0, NULL, 1.0F);
 
-	App->renderer->Blit(pokemoncenter, 321, 38, NULL, 1.0F);
+
 
 
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
@@ -408,6 +408,8 @@ update_status ModuleSceneIntro::Update()
 	}
 
 	FontDraw(score, 4, posicioFont, posicioFontY, 20, 1);
+
+	App->renderer->Blit(pokemoncenter, 321, 38, NULL, 1.0F);
 
 	// Flippers textures
 	App->renderer->Blit(App->scene_intro->flipperLeftTex,
