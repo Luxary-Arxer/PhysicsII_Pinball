@@ -63,6 +63,7 @@ bool ModuleSceneIntro::Start()
 	ultraball = App->textures->Load("pinball/ultraball.png");
 	flipperLeftTex = App->textures->Load("pinball/flipperLeft.png");
 	flipperRightTex = App->textures->Load("pinball/flipperRight.png");
+	pokemoncenter = App->textures->Load("pinball/pokemoncenter.png");
 
 	hitbox.add(App->physics->CreateChain(0, 0, hitbox2, 154));//
 	hitboxa.add(App->physics->CreateChain(0, 0, background4, 24));//
@@ -400,7 +401,7 @@ update_status ModuleSceneIntro::Update()
 			NULL, 1.0F, (App->scene_intro->ball->GetRotation()));
 	}
 
-	FontDraw(score, 4, posicioFont, posicioFontY, 10, 1);
+	FontDraw(score, 4, posicioFont, posicioFontY, 20, 1);
 
 	// Flippers textures
 	App->renderer->Blit(App->scene_intro->flipperLeftTex,
@@ -441,16 +442,16 @@ void ModuleSceneIntro::FontDraw(int score, int n, int posX, int posY, int separa
 		scoreCopia /= 10;
 	}
 
-	SDL_Rect rect0 = { 1 * 10, 0, 10, 17 };
-	SDL_Rect rect1 = { 2 * 10, 0, 10, 17 };
-	SDL_Rect rect2 = { 3 * 10, 0, 10, 17 };
-	SDL_Rect rect3 = { 4 * 10, 0, 10, 17 };
-	SDL_Rect rect4 = { 5 * 10, 0, 10, 17 };
-	SDL_Rect rect5 = { 6 * 10, 0, 10, 17 };
-	SDL_Rect rect6 = { 7 * 10, 0, 10, 17 };
-	SDL_Rect rect7 = { 8 * 10, 0, 10, 17 };
-	SDL_Rect rect8 = { 9 * 10, 0, 10, 17 };
-	SDL_Rect rect9 = { 10 * 10, 0, 10, 17 };
+	SDL_Rect rect0 = { 1 * 20, 0, 20, 32 };
+	SDL_Rect rect1 = { 2 * 20, 0, 20, 32 };
+	SDL_Rect rect2 = { 3 * 20, 0, 20, 32 };
+	SDL_Rect rect3 = { 4 * 20, 0, 20, 32 };
+	SDL_Rect rect4 = { 5 * 20, 0, 20, 32 };
+	SDL_Rect rect5 = { 6 * 20, 0, 20, 32 };
+	SDL_Rect rect6 = { 7 * 20, 0, 20, 32 };
+	SDL_Rect rect7 = { 8 * 20, 0, 20, 32 };
+	SDL_Rect rect8 = { 9 * 20, 0, 20, 32 };
+	SDL_Rect rect9 = { 10 * 20, 0, 20, 32 };
 
 	for (int k = 0; k < n; ++k) {
 

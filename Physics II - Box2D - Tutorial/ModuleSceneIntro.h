@@ -67,6 +67,8 @@ public:
 	SDL_Texture* font;
 	SDL_Texture* flipperLeftTex;
 	SDL_Texture* flipperRightTex;
+	SDL_Texture* pokemoncenter;
+
 
 	// FX
 	uint bonus_fx;
