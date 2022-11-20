@@ -132,18 +132,12 @@ bool ModuleSceneIntro::Start()
 
 	//Bumpers creation
 
-<<<<<<< Updated upstream
 
-	bumper1 = App->physics->CreateBumper(266, 278, 12, 1);
-	bumper2 = App->physics->CreateBumper(188, 285, 12, 1);
-	bumper3 = App->physics->CreateBumper(235, 336, 12, 1);
-=======
 //<<<<<<< HEAD
 	bumper1 = App->physics->CreateBumperCircle(266, 278, 12, 1.5);
 	bumper2 = App->physics->CreateBumperCircle(188, 285, 12, 1.5);
 	bumper3 = App->physics->CreateBumperCircle(235, 336, 12, 1.5);
 //=======
->>>>>>> Stashed changes
 	bumper1->listener = this;
 	bumper2->listener = this;
 	bumper3->listener = this;
@@ -156,10 +150,6 @@ bool ModuleSceneIntro::Start()
 	sensor3->listener = this;
 
 
-<<<<<<< Updated upstream
-=======
-//>>>>>>> d8788af7482f478abc53b4f465833db2aae568b3
->>>>>>> Stashed changes
 	return ret;
 }
 
