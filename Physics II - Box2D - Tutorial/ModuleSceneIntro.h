@@ -37,6 +37,10 @@ public:
 	PhysBody* bumper2;
 	PhysBody* bumper3;
 
+	PhysBody* sensor1;
+	PhysBody* sensor2;
+	PhysBody* sensor3;
+
 	p2List<PhysBody*> hitbox;
 	p2List<PhysBody*> hitboxa;
 	p2List<PhysBody*> hitboxb;
@@ -50,6 +54,7 @@ public:
 	// Ball
 	PhysBody* ball;
 	int numballs = 3;
+
 
 	// Flippers
 	PhysBody* flipperLeft;
@@ -76,6 +81,7 @@ public:
 	SDL_Texture* pokemonentrance;
 	SDL_Texture* Shroomish;
 	SDL_Texture* pikachu;
+	SDL_Texture* gameOver;
 
 	// FX
 	uint bonus_fx;

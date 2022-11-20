@@ -57,6 +57,7 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 
 	ShroomishHit.PushBack({ 2 * 58, 0, 58, 68 });
 	ShroomishHit.PushBack({ 3 * 58, 0, 58, 68 });
+	ShroomishHit.loop = false;
 	ShroomishHit.speed = 0.02;
 
 	// Pikachu animation
@@ -97,6 +98,7 @@ bool ModuleSceneIntro::Start()
 	pokemonentrance = App->textures->Load("pinball/pokemonentrance.png");
 	Shroomish = App->textures->Load("pinball/Pokemon_Shroomish.png");
 	pikachu = App->textures->Load("pinball/pikachu.png");
+	gameOver = App->textures->Load("pinball/game_over.png");
 
 	hitbox.add(App->physics->CreateChain(0, 0, hitbox2, 154));//
 	hitboxa.add(App->physics->CreateChain(0, 0, background4, 24));//
@@ -120,6 +122,7 @@ bool ModuleSceneIntro::Start()
 
 	// First ball creation
 	ball = App->physics->CreateCircle(484, 720, 13);
+	ball->listener = this;
 
 	// Flippers creation
 	App->physics->flippers[0] = App->physics->CreateFlipper(202, 800, 50, 20, true);
@@ -129,9 +132,21 @@ bool ModuleSceneIntro::Start()
 
 	//Bumpers creation
 
+<<<<<<< HEAD
 	bumper1 = App->physics->CreateBumper(266, 278, 12, 1.5);
 	bumper2 = App->physics->CreateBumper(188, 285, 12, 1.5);
 	bumper3 = App->physics->CreateBumper(235, 336, 12, 1.5);
+=======
+	bumper1 = App->physics->CreateBumper(266, 278, 12, 1);
+	bumper2 = App->physics->CreateBumper(188, 285, 12, 1);
+	bumper3 = App->physics->CreateBumper(235, 336, 12, 1);
+	bumper1->listener = this;
+	bumper2->listener = this;
+	bumper3->listener = this;
+
+
+
+>>>>>>> d8788af7482f478abc53b4f465833db2aae568b3
 	return ret;
 }
 
@@ -144,8 +159,6 @@ bool ModuleSceneIntro::CleanUp()
 
 update_status ModuleSceneIntro::Update()
 {
-	App->physics->PhysicsUpdate();
-
 	currentAnimation = &plungerIdle;
 
 	currentpokemoncenter = &centerIdle;
@@ -178,54 +191,63 @@ update_status ModuleSceneIntro::Update()
 	*/
 
 	// Camera controller 
-	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 	{
 		App->renderer->camera.y = App->renderer->camera.y + 2;
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_M) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 	{
 		App->renderer->camera.y = App->renderer->camera.y - 2;
 	}
 
-
-	// Plunger controller
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
 	{
-		currentAnimation = &plungerCharging;
+		score += 10;
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT || App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+	if (numballs != 0)
 	{
-		currentAnimation = &plungerMaxCharged;
-		App->physics->plunger->body->ApplyForce({ 0,10 }, { 0,0 }, true);
+		App->physics->PhysicsUpdate();
+
+		// Plunger controller
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
+		{
+			currentAnimation = &plungerCharging;
+		}
+
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT || App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+		{
+			currentAnimation = &plungerMaxCharged;
+			App->physics->plunger->body->ApplyForce({ 0,10 }, { 0,0 }, true);
+		}
+
+		// If user releases SPACE, the plunger shoots
+		float charge = App->physics->plunger->body->GetPosition().y - py;
+
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP || App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_UP)
+		{
+			if (currentAnimation != &plungerIdle)
+			{
+				plungerIdle.Reset();
+				currentAnimation = &plungerIdle;
+			}
+
+			if (charge < 0.2f)
+			{
+				App->physics->plunger->body->ApplyForce({ 0, -300 }, { 0, 0 }, true);
+			}
+			else if (charge < 0.5f)
+			{
+				App->physics->plunger->body->ApplyForce({ 0, -450 }, { 0, 0 }, true);
+			}
+			else
+			{
+				App->physics->plunger->body->ApplyForce({ 0, -700 }, { 0, 0 }, true);
+			}
+		}
+
 	}
-
-	// If user releases SPACE, the plunger shoots
-	float charge = App->physics->plunger->body->GetPosition().y - py;
-
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP || App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_UP)
-	{
-		if (currentAnimation != &plungerIdle)
-		{
-			plungerIdle.Reset();
-			currentAnimation = &plungerIdle;
-		}
-
-		if (charge < 0.2f)
-		{
-			App->physics->plunger->body->ApplyForce({ 0, -300 }, { 0, 0 }, true);
-		}
-		else if (charge < 0.5f)
-		{
-			App->physics->plunger->body->ApplyForce({ 0, -450 }, { 0, 0 }, true);
-		}
-		else 
-		{
-			App->physics->plunger->body->ApplyForce({ 0, -700 }, { 0, 0 }, true);
-		}
-	}
-
 	// If user presses S, enable RayCast
 	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
 	{
@@ -301,6 +323,8 @@ update_status ModuleSceneIntro::Update()
 
 		ricks.add(App->physics->CreateChain(App->input->GetMouseX(), App->input->GetMouseY(), rick_head, 64));
 	}
+
+
 
 	// Prepare for raycast ------------------------------------------------------
 	
@@ -474,6 +498,12 @@ update_status ModuleSceneIntro::Update()
 		METERS_TO_PIXELS(App->physics->flippers[1]->body->GetPosition().y - 10),
 		0, 1.0f, App->physics->flippers[1]->body->GetAngle()* RADTODEG);
 
+	//Game over screen
+	if (numballs == 0)
+	{
+		App->renderer->Blit(gameOver, 0, 0, NULL, 1.0F);
+	}
+
 	// Keep playing
 	return UPDATE_CONTINUE;
 }
@@ -481,7 +511,26 @@ update_status ModuleSceneIntro::Update()
 void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
 	// Play Audio FX on every collision, regardless of who is colliding
-	//App->audio->PlayFx(bonus_fx);
+
+
+	if (bodyA == ball && (bodyB == bumper1 || bodyB == bumper2 || bodyB == bumper3)) {
+		score += 10;
+		App->audio->PlayFx(bonus_fx);
+		currentAnimation = &ShroomishHit;
+		if (currentShroomish != &ShroomishHit)
+		{
+			ShroomishHit.Reset();
+			currentAnimation = &ShroomishHit;
+		}
+		if (currentShroomish != &ShroomishHit) {
+			if (currentShroomish->HasFinished()) {
+				//printf("_Death_");
+				//pbody->body->SetTransform({ PIXEL_TO_METERS(150),PIXEL_TO_METERS(586) }, 0);
+				currentShroomish = &ShroomishIdle;
+			}
+		}
+	}
+
 
 	// Do something else. You can also check which bodies are colliding (sensor? ball? player?)
 }
