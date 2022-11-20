@@ -97,6 +97,7 @@ bool ModuleSceneIntro::Start()
 	pokemonentrance = App->textures->Load("pinball/pokemonentrance.png");
 	Shroomish = App->textures->Load("pinball/Pokemon_Shroomish.png");
 	pikachu = App->textures->Load("pinball/pikachu.png");
+	gameOver = App->textures->Load("pinball/game_over.png");
 
 	hitbox.add(App->physics->CreateChain(0, 0, hitbox2, 154));//
 	hitboxa.add(App->physics->CreateChain(0, 0, background4, 24));//
@@ -144,8 +145,6 @@ bool ModuleSceneIntro::CleanUp()
 
 update_status ModuleSceneIntro::Update()
 {
-	App->physics->PhysicsUpdate();
-
 	currentAnimation = &plungerIdle;
 
 	currentpokemoncenter = &centerIdle;
@@ -188,7 +187,10 @@ update_status ModuleSceneIntro::Update()
 		App->renderer->camera.y = App->renderer->camera.y - 2;
 	}
 
-
+	if (numballs != 0)
+	{
+		App->physics->PhysicsUpdate();
+	
 	// Plunger controller
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
 	{
@@ -226,6 +228,7 @@ update_status ModuleSceneIntro::Update()
 		}
 	}
 
+	}
 	// If user presses S, enable RayCast
 	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
 	{
@@ -473,6 +476,12 @@ update_status ModuleSceneIntro::Update()
 		METERS_TO_PIXELS(App->physics->flippers[1]->body->GetPosition().x - 25),
 		METERS_TO_PIXELS(App->physics->flippers[1]->body->GetPosition().y - 10),
 		0, 1.0f, App->physics->flippers[1]->body->GetAngle()* RADTODEG);
+
+	//Game over screen
+	if (numballs == 0)
+	{
+		App->renderer->Blit(gameOver, 0, 0, NULL, 1.0F);
+	}
 
 	// Keep playing
 	return UPDATE_CONTINUE;

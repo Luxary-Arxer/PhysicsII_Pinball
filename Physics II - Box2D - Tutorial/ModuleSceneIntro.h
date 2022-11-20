@@ -76,6 +76,7 @@ public:
 	SDL_Texture* pokemonentrance;
 	SDL_Texture* Shroomish;
 	SDL_Texture* pikachu;
+	SDL_Texture* gameOver;
 
 	// FX
 	uint bonus_fx;
