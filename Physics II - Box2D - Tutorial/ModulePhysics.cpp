@@ -504,7 +504,7 @@ void ModulePhysics::PhysicsUpdate() {
 	{
 		if (i % 2 == 0)
 		{
-			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN)
+			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT || App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 			{
 				flippers[i]->body->SetAngularVelocity(-15);
 				flippers[i]->isActive = true;
@@ -529,7 +529,7 @@ void ModulePhysics::PhysicsUpdate() {
 		}
 		else
 		{
-			if (App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN)
+			if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT || App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 			{
 				flippers[i]->body->SetAngularVelocity(15);
 				flippers[i]->isActive = true;

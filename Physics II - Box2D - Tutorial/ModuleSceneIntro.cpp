@@ -469,7 +469,7 @@ update_status ModuleSceneIntro::Update()
 	}
 
 	// Ball textures
-	if (numballs == 3)
+	if (numballs >= 3)
 	{
 		App->renderer->Blit(ultraball,
 			METERS_TO_PIXELS(App->scene_intro->ball->body->GetPosition().x - 12),
@@ -513,7 +513,12 @@ update_status ModuleSceneIntro::Update()
 		METERS_TO_PIXELS(App->physics->flippers[1]->body->GetPosition().y - 10),
 		0, 1.0f, App->physics->flippers[1]->body->GetAngle()* RADTODEG);
 
-	//Game over screen
+
+	// Gives extra ball
+	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
+		numballs = 3;
+	
+	// Game over screen
 	if (numballs == 0)
 	{
 		App->renderer->Blit(gameOver, 0, 0, NULL, 1.0F);
