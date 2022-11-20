@@ -400,6 +400,8 @@ update_status ModuleSceneIntro::Update()
 			NULL, 1.0F, (App->scene_intro->ball->GetRotation()));
 	}
 
+	FontDraw(score, 4, posicioFont, posicioFontY, 0, 1);
+
 	// Flippers textures
 	App->renderer->Blit(App->scene_intro->flipperLeftTex,
 		METERS_TO_PIXELS(App->physics->flippers[0]->body->GetPosition().x - 35),

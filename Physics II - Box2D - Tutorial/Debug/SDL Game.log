@@ -1,21 +1,4 @@
 ﻿  Application.cpp
-  log.cpp
-  Main.cpp
-  ModuleAudio.cpp
-  ModuleInput.cpp
-  ModulePhysics.cpp
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModulePhysics.cpp(268,8): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModulePhysics.cpp(349,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModulePhysics.cpp(350,25): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModulePhysics.cpp(403,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModulePhysics.cpp(443,41): warning C4305: '=': truncamiento de 'double' a 'float32'
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModulePhysics.cpp(474,25): warning C4244: '-=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModulePhysics.cpp(499,25): warning C4244: '-=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModulePhysics.cpp(635,13): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModulePhysics.cpp(636,13): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModulePhysics.cpp(642,27): warning C4244: 'return': conversión de 'float32' a 'int'; posible pérdida de datos
-  ModulePlayer.cpp
-  ModuleRender.cpp
   ModuleSceneIntro.cpp
 C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(92,99): warning C4305: 'argumento': truncamiento de 'double' a 'float32'
 C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\ModuleSceneIntro.cpp(94,100): warning C4305: 'argumento': truncamiento de 'double' a 'float32'
@@ -68,7 +51,5 @@ C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D -
           [
               TYPE=float
           ]
-  ModuleTextures.cpp
-  ModuleWindow.cpp
   Generando código...
   SDL Game.vcxproj -> C:\Users\Luxary\Downloads\Github Projects\PhysicsII_Pinball\Physics II - Box2D - Tutorial\Debug\Pinball.exe
