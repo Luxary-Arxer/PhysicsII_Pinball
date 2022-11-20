@@ -23,6 +23,7 @@ public:
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 	void FontDrawScore(int score, int n, int posX, int posY, int separacio, float scale);
 	void FontDrawLife(int score, int n, int posX, int posY, int separacio, float scale);
+	void FontDrawMaxScore(int score, int n, int posX, int posY, int separacio, float scale);
 
 public:
 
@@ -100,8 +101,8 @@ public:
 	int prev_score = 0;
 	int posicioFont = 90;
 	int posicioFontY = 828;
-
-
+	int posicioMaxScoreX = 180;
+	int posicioMaxScoreY = 15;
 
 	// Animations
 	Animation* currentAnimation = nullptr;
