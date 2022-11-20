@@ -97,6 +97,12 @@ bool ModuleSceneIntro::Start()
 	App->physics->flippers[1] = App->physics->CreateFlipper(282, 800, 50, 20, false);
 	App->physics->flippers[1]->body->SetTransform(App->physics->flippers[0]->body->GetPosition(), -0.6);
 
+	//Bumper1
+	
+	//bumper1 = App->physics->CreateBumper(METERS_TO_PIXELS(6.4f), METERS_TO_PIXELS(5.0f), 12, 1);
+	bumper1 = App->physics->CreateBumper(266, 286, 12, 1);
+	bumper2 = App->physics->CreateBumper(190, 289, 12, 1);
+	bumper3 = App->physics->CreateBumper(225, 338, 12, 1);
 
 	return ret;
 }

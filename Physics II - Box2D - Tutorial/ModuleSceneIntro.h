@@ -46,9 +46,15 @@ public:
 	PhysBody* ball;
 	int numballs = 3;
 
+
 	// Flippers
 	PhysBody* flipperLeft;
 	PhysBody* flipperRight;
+
+	// Elements Hitboxes
+	PhysBody* bumper1;
+	PhysBody* bumper2;
+	PhysBody* bumper3;
 
 	// Lower ground sensor (will kill all objects passig through it)
 	PhysBody* lower_ground_sensor;
