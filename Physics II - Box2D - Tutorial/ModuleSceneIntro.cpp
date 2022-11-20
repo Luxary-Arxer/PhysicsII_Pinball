@@ -488,8 +488,6 @@ update_status ModuleSceneIntro::Update()
 	FontDrawLife(numballs, 1, posicioFont+280, posicioFontY, 20, 1);
 	FontDrawMaxScore(max_score, 4, posicioMaxScoreX, posicioMaxScoreY, 20, 1);
 
-
-
 	App->renderer->Blit(pokemoncenter, 321, 38, &rect2);
 
 	App->renderer->Blit(Shroomish, 160, 242, &rect3);
@@ -510,9 +508,12 @@ update_status ModuleSceneIntro::Update()
 		0, 1.0f, App->physics->flippers[1]->body->GetAngle()* RADTODEG);
 
 
-	// Gives extra ball
+	// Reset game to 3 ball with 0 score
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
+	{
 		numballs = 3;
+		score = 0;
+	}
 	
 	// Game over screen
 	if (numballs == 0)
