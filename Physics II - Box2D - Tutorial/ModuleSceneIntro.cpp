@@ -480,9 +480,15 @@ update_status ModuleSceneIntro::Update()
 			NULL, 1.0F, (App->scene_intro->ball->GetRotation()));
 	}
 
+	if (score >= max_score) {
+		max_score = score;
+	}
+
 	FontDrawScore(score, 4, posicioFont, posicioFontY, 20, 1);
 	FontDrawLife(numballs, 1, posicioFont+280, posicioFontY, 20, 1);
-	FontDrawMaxScore(score, 4, posicioMaxScoreX, posicioMaxScoreY, 20, 1);
+	FontDrawMaxScore(max_score, 4, posicioMaxScoreX, posicioMaxScoreY, 20, 1);
+
+
 
 	App->renderer->Blit(pokemoncenter, 321, 38, &rect2);
 
