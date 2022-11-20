@@ -140,7 +140,6 @@ bool ModuleSceneIntro::Start()
 	sensor2 = App->physics->CreateCircleSensor(188, 285, 15);
 	sensor3 = App->physics->CreateCircleSensor(235, 336, 15);
 
-
 	return ret;
 }
 
@@ -195,6 +194,11 @@ update_status ModuleSceneIntro::Update()
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 	{
 		App->renderer->camera.y = App->renderer->camera.y - 2;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
+	{
+		score += 10;
 	}
 
 
@@ -311,51 +315,7 @@ update_status ModuleSceneIntro::Update()
 		ricks.add(App->physics->CreateChain(App->input->GetMouseX(), App->input->GetMouseY(), rick_head, 64));
 	}
 
-	if (sensor1->Contains(ball->body->GetPosition().x, ball->body->GetPosition().y)) {
-		score += 10;
-		if (currentShroomish != &ShroomishHit)
-		{
-			ShroomishHit.Reset();
-			currentAnimation = &ShroomishHit;
-		}
-		if (currentShroomish != &ShroomishHit) {
-			if (currentShroomish->HasFinished()) {
-				//printf("_Death_");
-				//pbody->body->SetTransform({ PIXEL_TO_METERS(150),PIXEL_TO_METERS(586) }, 0);
-				currentShroomish = &ShroomishIdle;
-			}
-		}
-	}
-	if (sensor2->Contains(ball->body->GetPosition().x, ball->body->GetPosition().y)) {
-		score += 10;
-		if (currentShroomish != &ShroomishHit)
-		{
-			ShroomishHit.Reset();
-			currentAnimation = &ShroomishHit;
-		}
-		if (currentShroomish != &ShroomishHit) {
-			if (currentShroomish->HasFinished()) {
-				//printf("_Death_");
-				//pbody->body->SetTransform({ PIXEL_TO_METERS(150),PIXEL_TO_METERS(586) }, 0);
-				currentShroomish = &ShroomishIdle;
-			}
-		}
-	}
-	if (sensor3->Contains(ball->body->GetPosition().x, ball->body->GetPosition().y)) {
-		score += 10;
-		if (currentShroomish != &ShroomishHit)
-		{
-			ShroomishHit.Reset();
-			currentAnimation = &ShroomishHit;
-		}
-		if (currentShroomish != &ShroomishHit) {
-			if (currentShroomish->HasFinished()) {
-				//printf("_Death_");
-				//pbody->body->SetTransform({ PIXEL_TO_METERS(150),PIXEL_TO_METERS(586) }, 0);
-				currentShroomish = &ShroomishIdle;
-			}
-		}
-	}
+
 
 	// Prepare for raycast ------------------------------------------------------
 	
@@ -541,7 +501,25 @@ update_status ModuleSceneIntro::Update()
 void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
 	// Play Audio FX on every collision, regardless of who is colliding
-	//App->audio->PlayFx(bonus_fx);
+
+
+	if (bodyA == ball && (bodyB == sensor1 || bodyB == sensor2 || bodyB == sensor3)) {
+		score += 10;
+		App->audio->PlayFx(bonus_fx);
+		//if (currentShroomish != &ShroomishHit)
+		//{
+		//	ShroomishHit.Reset();
+		//	currentAnimation = &ShroomishHit;
+		//}
+		//if (currentShroomish != &ShroomishHit) {
+		//	if (currentShroomish->HasFinished()) {
+		//		//printf("_Death_");
+		//		//pbody->body->SetTransform({ PIXEL_TO_METERS(150),PIXEL_TO_METERS(586) }, 0);
+		//		currentShroomish = &ShroomishIdle;
+		//	}
+		//}
+	}
+
 
 	// Do something else. You can also check which bodies are colliding (sensor? ball? player?)
 }
