@@ -55,6 +55,8 @@ public:
 	PhysBody* ball;
 	int numballs = 3;
 
+	bool colision=false;
+
 
 	// Flippers
 	PhysBody* flipperLeft;
