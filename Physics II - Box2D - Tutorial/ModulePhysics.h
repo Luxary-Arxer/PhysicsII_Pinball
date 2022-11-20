@@ -69,29 +69,19 @@ public:
 	PhysBody* CreateRectangle(int x, int y, int width, int height);
 	PhysBody* CreateRectangleSensor(int x, int y, int width, int height);
 	PhysBody* CreateChain(int x, int y, int* points, int size);
-	PhysBody* CreateBumper(int x, int y, int radius, int restitution);
-
 
 	// b2ContactListener ---
 	void BeginContact(b2Contact* contact);
-
-	
 
 	// Plunger joint creation function
 	void CreatePrismaticJoint(PhysBody* dyn, PhysBody* stat);
 	
 	PhysBody* limitPlunger, * plunger;
 
-	
-
 	// Flipper creation function
 	Flipper* CreateFlipper(int x, int y, int w, int h, bool left);
 
 	Flipper* flippers[2];
-
-
-	 // Flipper creation function
-
 
 private:
 

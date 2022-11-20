@@ -53,13 +53,11 @@ bool ModulePhysics::Start()
 	b.categoryBits = 1;
 	b.maskBits = 1 | 0;
 
-	
 	plunger = CreateRectangle(486, 750, 24, 24);
 	plunger->body->SetType(b2_dynamicBody);
 
 	limitPlunger = CreateRectangle(486, 816, 24, 24);
 	limitPlunger->body->SetType(b2_staticBody);
-	
 
 	App->physics->CreatePrismaticJoint(plunger, limitPlunger);
 
@@ -319,31 +317,6 @@ PhysBody* ModulePhysics::CreateCircle(int x, int y, int radius)
 	pbody->width = pbody->height = radius;
 
 	// Return our PhysBody class
-	return pbody;
-}
-
-PhysBody* ModulePhysics::CreateBumper(int x, int y, int radius, int restitution)
-{
-	b2BodyDef body;
-	body.type = b2_staticBody;
-	body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
-
-	b2Body* b = world->CreateBody(&body);
-
-	b2CircleShape shape;
-	shape.m_radius = PIXEL_TO_METERS(radius);
-	b2FixtureDef fixture;
-	fixture.shape = &shape;
-	fixture.density = 1.0f;
-	fixture.restitution = 1.5f;
-
-	b->CreateFixture(&fixture);
-
-	PhysBody* pbody = new PhysBody();
-	pbody->body = b;
-	b->SetUserData(pbody);
-	pbody->width = pbody->height = radius;
-
 	return pbody;
 }
 
