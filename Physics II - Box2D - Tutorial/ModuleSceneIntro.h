@@ -93,6 +93,9 @@ public:
 	Animation plungerCharging;
 	Animation plungerMaxCharged;
 
+	Animation* currentpokemoncenter = nullptr;
+
+	Animation centerIdle;
 
 
 	int triangleLeft[6]{

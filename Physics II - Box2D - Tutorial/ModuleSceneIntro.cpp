@@ -35,6 +35,19 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	plungerMaxCharged.PushBack({ 264, 0, 40, 80 });
 	plungerMaxCharged.speed = 0.1f;
 
+	centerIdle.PushBack({ 0*192, 0, 192, 192 });
+	centerIdle.PushBack({ 1 * 192, 0, 192, 192 });
+	centerIdle.PushBack({ 2 * 192, 0, 192, 192 });
+	centerIdle.PushBack({ 3 * 192, 0, 192, 192 });
+	centerIdle.PushBack({ 4 * 192, 0, 192, 192 });
+	centerIdle.PushBack({ 5 * 192, 0, 192, 192 });
+	centerIdle.PushBack({ 6 * 192, 0, 192, 192 });
+	centerIdle.PushBack({ 7 * 192, 0, 192, 192 });
+	centerIdle.PushBack({ 8 * 192, 0, 192, 192 });
+	centerIdle.PushBack({ 9 * 192, 0, 192, 192 });
+	centerIdle.PushBack({ 10 * 192, 0, 192, 192 });
+	centerIdle.PushBack({ 11 * 192, 0, 192, 192 });
+	centerIdle.speed = 0.01f;
 
 
 }
@@ -113,6 +126,8 @@ update_status ModuleSceneIntro::Update()
 	App->physics->PhysicsUpdate();
 
 	currentAnimation = &plungerIdle;
+
+	currentpokemoncenter = &centerIdle;
 
 	// If user presses SPACE, charges the plunger
 
@@ -360,6 +375,7 @@ update_status ModuleSceneIntro::Update()
 	}
 
 	currentAnimation->Update();
+	currentpokemoncenter->Update();
 
 	// Background texture
 	App->renderer->Blit(background, 0, 0, NULL, 1.0F);
@@ -368,6 +384,7 @@ update_status ModuleSceneIntro::Update()
 
 
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
+	SDL_Rect rect = currentpokemoncenter->GetCurrentFrame();
 
 	// Plunger texture
 	App->renderer->Blit(spoink, 466, 750, &rect);
@@ -410,6 +427,7 @@ update_status ModuleSceneIntro::Update()
 	FontDraw(score, 4, posicioFont, posicioFontY, 20, 1);
 
 	App->renderer->Blit(pokemoncenter, 321, 38, NULL, 1.0F);
+
 
 	// Flippers textures
 	App->renderer->Blit(App->scene_intro->flipperLeftTex,
