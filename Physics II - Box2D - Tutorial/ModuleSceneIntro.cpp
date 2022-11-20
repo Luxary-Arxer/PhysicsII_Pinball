@@ -80,6 +80,7 @@ bool ModuleSceneIntro::Start()
 	flipperLeftTex = App->textures->Load("pinball/flipperLeft.png");
 	flipperRightTex = App->textures->Load("pinball/flipperRight.png");
 	pokemoncenter = App->textures->Load("pinball/pokemoncenter.png");
+	pokemonentrance = App->textures->Load("pinball/pokemonentrance.png");
 
 	hitbox.add(App->physics->CreateChain(0, 0, hitbox2, 154));//
 	hitboxa.add(App->physics->CreateChain(0, 0, background4, 24));//
@@ -380,10 +381,9 @@ update_status ModuleSceneIntro::Update()
 	// Background texture
 	App->renderer->Blit(background, 0, 0, NULL, 1.0F);
 
+	App->renderer->Blit(pokemonentrance, 458, 175, NULL, 1.0F);
 
-
-
-	SDL_Rect rect = currentAnimation->GetCurrentFrame();
+	//SDL_Rect rect = currentAnimation->GetCurrentFrame();
 	SDL_Rect rect = currentpokemoncenter->GetCurrentFrame();
 
 	// Plunger texture
@@ -424,7 +424,8 @@ update_status ModuleSceneIntro::Update()
 			NULL, 1.0F, (App->scene_intro->ball->GetRotation()));
 	}
 
-	FontDraw(score, 4, posicioFont, posicioFontY, 20, 1);
+	FontDrawScore(score, 4, posicioFont, posicioFontY, 20, 1);
+	FontDrawLife(numballs, 1, posicioFont+280, posicioFontY, 20, 1);
 
 	App->renderer->Blit(pokemoncenter, 321, 38, NULL, 1.0F);
 
@@ -459,7 +460,7 @@ update_status ModuleSceneIntro::PostUpdate()
 }
 
 
-void ModuleSceneIntro::FontDraw(int score, int n, int posX, int posY, int separacio, float scale) {
+void ModuleSceneIntro::FontDrawScore(int score, int n, int posX, int posY, int separacio, float scale) {
 	int initialPosX = posX;
 	int scoreCopia = score;
 	int scoreArray[4];
@@ -514,7 +515,44 @@ void ModuleSceneIntro::FontDraw(int score, int n, int posX, int posY, int separa
 			break;
 		}
 
-		posX -= separacio; //Separació entre font
+		posX -= separacio; 
 	}
-	posX = initialPosX; //Posició del primer element de la dreta
+	posX = initialPosX;
+}
+
+void ModuleSceneIntro::FontDrawLife(int score, int n, int posX, int posY, int separacio, float scale) {
+	int initialPosX = posX;
+	int scoreCopia = score;
+	int scoreArray[1];
+	for (int j = 0; j < n; ++j) {
+		scoreArray[j] = scoreCopia % 10;
+		scoreCopia /= 10;
+	}
+
+	SDL_Rect rect0 = { 1 * 20, 2 * 34, 20, 34 };
+	SDL_Rect rect1 = { 2 * 20, 1 * 34, 20, 34 };
+	SDL_Rect rect2 = { 3 * 20, 1 * 34, 20, 34 };
+	SDL_Rect rect3 = { 4 * 20, 0, 20, 34 };
+
+
+	for (int k = 0; k < n; ++k) {
+
+		switch (scoreArray[k]) {
+		case 0:
+			App->renderer->Blit(font, posX, posY, &rect0, scale);
+			break;
+		case 1:
+			App->renderer->Blit(font, posX, posY, &rect1, scale);
+			break;
+		case 2:
+			App->renderer->Blit(font, posX, posY, &rect2, scale);
+			break;
+		case 3:
+			App->renderer->Blit(font, posX, posY, &rect3, scale);
+			break;
+
+		}
+
+	}
+	posX = initialPosX;
 }
