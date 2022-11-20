@@ -487,8 +487,13 @@ update_status ModuleSceneIntro::Update()
 			NULL, 1.0F, (App->scene_intro->ball->GetRotation()));
 	}
 
+	if (score >= max_score) {
+		max_score = score;
+	}
+
 	FontDrawScore(score, 4, posicioFont, posicioFontY, 20, 1);
 	FontDrawLife(numballs, 1, posicioFont+280, posicioFontY, 20, 1);
+	FontDrawMaxScore(max_score, 4, posicioMaxScoreX, posicioMaxScoreY, 20, 1);
 
 	App->renderer->Blit(pokemoncenter, 321, 38, &rect2);
 
@@ -510,9 +515,12 @@ update_status ModuleSceneIntro::Update()
 		0, 1.0f, App->physics->flippers[1]->body->GetAngle()* RADTODEG);
 
 
-	// Gives extra ball
+	// Reset game to 3 ball with 0 score
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
+	{
 		numballs = 3;
+		score = 0;
+	}
 	
 	// Game over screen
 	if (numballs == 0)
@@ -553,9 +561,6 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 
 update_status ModuleSceneIntro::PostUpdate()
 {
-
-
-
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -650,9 +655,67 @@ void ModuleSceneIntro::FontDrawLife(int score, int n, int posX, int posY, int se
 		case 3:
 			App->renderer->Blit(font, posX, posY, &rect3, scale);
 			break;
+		}
+	}
+	posX = initialPosX;
+}
 
+void ModuleSceneIntro::FontDrawMaxScore(int score, int n, int posX, int posY, int separacio, float scale) {
+	int initialPosX = posX;
+	int scoreCopia = score;
+	int scoreArray[4];
+	for (int j = 0; j < n; ++j) {
+		scoreArray[j] = scoreCopia % 10;
+		scoreCopia /= 10;
+	}
+
+	SDL_Rect rect0 = { 1 * 20, 34, 20, 32 };
+	SDL_Rect rect1 = { 2 * 20, 34, 20, 32 };
+	SDL_Rect rect2 = { 3 * 20, 34, 20, 32 };
+	SDL_Rect rect3 = { 4 * 20, 34, 20, 32 };
+	SDL_Rect rect4 = { 5 * 20, 34, 20, 32 };
+	SDL_Rect rect5 = { 6 * 20, 34, 20, 32 };
+	SDL_Rect rect6 = { 7 * 20, 34, 20, 32 };
+	SDL_Rect rect7 = { 8 * 20, 34, 20, 32 };
+	SDL_Rect rect8 = { 9 * 20, 34, 20, 32 };
+	SDL_Rect rect9 = { 10 * 20, 34, 20, 32 };
+
+	for (int k = 0; k < n; ++k) {
+
+		switch (scoreArray[k]) {
+		case 0:
+			App->renderer->Blit(font, posX, posY, &rect0, scale);
+			break;
+		case 1:
+			App->renderer->Blit(font, posX, posY, &rect1, scale);
+			break;
+		case 2:
+			App->renderer->Blit(font, posX, posY, &rect2, scale);
+			break;
+		case 3:
+			App->renderer->Blit(font, posX, posY, &rect3, scale);
+			break;
+		case 4:
+			App->renderer->Blit(font, posX, posY, &rect4, scale);
+			break;
+		case 5:
+			App->renderer->Blit(font, posX, posY, &rect5, scale);
+			break;
+		case 6:
+			App->renderer->Blit(font, posX, posY, &rect6, scale);
+			break;
+		case 7:
+			App->renderer->Blit(font, posX, posY, &rect7, scale);
+			break;
+		case 8:
+			App->renderer->Blit(font, posX, posY, &rect8, scale);
+			break;
+		case 9:
+			App->renderer->Blit(font, posX, posY, &rect9, scale);
+			break;
 		}
 
+		posX -= separacio;
 	}
 	posX = initialPosX;
 }
